@@ -18,6 +18,7 @@ export interface User {
   updatedAt: string;
 }
 
+/** 公開ユーザー情報（タイムスタンプを含まない） */
 export interface UserPublic {
   id: string;
   email: string;
