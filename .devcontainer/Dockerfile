@@ -8,11 +8,11 @@ RUN apt-get update && apt-get install -y \
     postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-# pnpm インストール
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# pnpm インストール（バージョン固定で再現性確保）
+RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
 
-# Turbo グローバルインストール
-RUN pnpm add -g turbo
+# Turbo グローバルインストール（バージョン固定）
+RUN pnpm add -g turbo@2.3.3
 
 # 作業ディレクトリ
 WORKDIR /workspace

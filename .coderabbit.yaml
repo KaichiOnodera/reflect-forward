@@ -7,7 +7,7 @@ reviews:
   # PRの自動レビューを有効化
   auto_review:
     enabled: true
-    # ドラフトPRもレビュー
+    # ドラフトPRはレビューしない
     drafts: false
     # ベースブランチのフィルタ
     base_branches:
