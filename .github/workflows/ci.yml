@@ -30,8 +30,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm prisma generate
-        working-directory: apps/api
+        run: pnpm --filter @reflect-forward/api exec prisma generate --schema=../../prisma/schema.prisma
 
       - name: Format Check
         run: pnpm format:check
@@ -65,8 +64,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm prisma generate
-        working-directory: apps/api
+        run: pnpm --filter @reflect-forward/api exec prisma generate --schema=../../prisma/schema.prisma
 
       - name: Test
         run: pnpm test
@@ -94,8 +92,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        run: pnpm prisma generate
-        working-directory: apps/api
+        run: pnpm --filter @reflect-forward/api exec prisma generate --schema=../../prisma/schema.prisma
 
       - name: Build
         run: pnpm build
