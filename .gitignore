@@ -16,6 +16,7 @@ out/
 # IDE
 .idea/
 .vscode/
+.cursor/
 *.swp
 *.swo
 
@@ -34,6 +35,9 @@ coverage/
 # Prisma
 prisma/*.db
 prisma/*.db-journal
+
+# Learning notes (private)
+docs/learning/
 
 # Misc
 *.tsbuildinfo
