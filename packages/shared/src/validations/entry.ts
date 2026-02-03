@@ -4,11 +4,7 @@ import { z } from "zod";
 const isValidDate = (dateStr: string): boolean => {
   const [year, month, day] = dateStr.split("-").map(Number);
   const date = new Date(year, month - 1, day);
-  return (
-    date.getFullYear() === year &&
-    date.getMonth() === month - 1 &&
-    date.getDate() === day
-  );
+  return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
 };
 
 /** 日付バリデーション（YYYY-MM-DD形式 + 実在する日付） */
@@ -36,10 +32,7 @@ export const updateEntrySchema = z
     rating: z.number().int().min(1).max(5).nullable().optional(),
     entryDate: dateSchema.optional(),
   })
-  .refine(
-    (data) => Object.keys(data).length > 0,
-    "更新する項目を1つ以上指定してください"
-  );
+  .refine((data) => Object.keys(data).length > 0, "更新する項目を1つ以上指定してください");
 
 export const listEntriesQuerySchema = z
   .object({

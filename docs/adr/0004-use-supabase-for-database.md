@@ -1,29 +1,35 @@
 # ADR-0004: データベースに Supabase (PostgreSQL) を採用
 
 ## ステータス
+
 採用
 
 ## コンテキスト
+
 アプリケーションのデータを永続化するためのデータベースを選定する必要がある。
 要件:
+
 - 無料枠があること（個人プロジェクト）
 - SQL が使えること（学習価値）
 - 管理が容易であること
 - 将来的な AI 分析に適していること
 
 ## 決定
+
 Supabase を採用し、PostgreSQL データベースとして使用する。
 ただし、認証機能（Supabase Auth）は使用せず、DB 機能のみを利用する。
 
 ## 理由
 
 ### PostgreSQL の採用理由
+
 - SQL は業界標準であり、学んで損がない
 - 複雑なクエリ（集計、フィルタ）が得意
 - JSON カラムで柔軟なデータ構造も可能
 - AI 分析時に SQL でデータ抽出が容易
 
 ### Supabase の採用理由
+
 - PostgreSQL をマネージドで提供
 - 無料枠が充実（500MB、50,000 MAU）
 - 管理画面（Table Editor）が便利
@@ -32,6 +38,7 @@ Supabase を採用し、PostgreSQL データベースとして使用する。
 ## 検討した選択肢
 
 ### 選択肢1: Firebase (Firestore)
+
 - メリット:
   - Google エコシステムとの統合
   - リアルタイム同期が強力
@@ -43,6 +50,7 @@ Supabase を採用し、PostgreSQL データベースとして使用する。
   - AI 分析時のデータ抽出が複雑
 
 ### 選択肢2: Neon
+
 - メリット:
   - サーバーレス PostgreSQL
   - Vercel との統合が良い
@@ -52,6 +60,7 @@ Supabase を採用し、PostgreSQL データベースとして使用する。
   - 無料枠が小さい
 
 ### 選択肢3: PlanetScale
+
 - メリット:
   - MySQL 互換でスケール性が高い
   - ブランチ機能
@@ -60,6 +69,7 @@ Supabase を採用し、PostgreSQL データベースとして使用する。
   - PostgreSQL ではない
 
 ### 選択肢4: 自前 PostgreSQL (Docker)
+
 - メリット:
   - 完全な制御
   - コスト無料
@@ -70,23 +80,26 @@ Supabase を採用し、PostgreSQL データベースとして使用する。
 ## 影響
 
 ### ポジティブ
+
 - SQL スキルが身につく
 - Prisma との相性が良い
 - 管理画面でデータ確認が容易
 - 将来の AI 分析に適している
 
 ### ネガティブ
+
 - Supabase への依存
 - 無料枠を超えると課金が必要
 
 ## 環境構成
 
-| 環境 | データベース |
-|------|-------------|
-| ローカル開発 | Docker PostgreSQL |
-| 本番 | Supabase PostgreSQL |
+| 環境         | データベース        |
+| ------------ | ------------------- |
+| ローカル開発 | Docker PostgreSQL   |
+| 本番         | Supabase PostgreSQL |
 
 ローカルと本番で同じ PostgreSQL を使うことで、環境差異による問題を防ぐ。
 
 ## 関連
+
 - ADR-0003: JWT 自前実装（Supabase Auth は使わない）

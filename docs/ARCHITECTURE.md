@@ -182,24 +182,24 @@ reflect-forward/
 
 ### 認証 (`/api/auth`)
 
-| Method | Path | 説明 | 認証 |
-|--------|------|------|------|
-| POST | `/register` | ユーザー登録 | 不要 |
-| POST | `/login` | ログイン | 不要 |
-| POST | `/refresh` | トークン更新 | Refresh Token |
-| POST | `/logout` | ログアウト | 必要 |
-| GET | `/me` | 現在のユーザー | 必要 |
+| Method | Path        | 説明           | 認証          |
+| ------ | ----------- | -------------- | ------------- |
+| POST   | `/register` | ユーザー登録   | 不要          |
+| POST   | `/login`    | ログイン       | 不要          |
+| POST   | `/refresh`  | トークン更新   | Refresh Token |
+| POST   | `/logout`   | ログアウト     | 必要          |
+| GET    | `/me`       | 現在のユーザー | 必要          |
 
 ### 日記 (`/api/entries`)
 
-| Method | Path | 説明 | 認証 |
-|--------|------|------|------|
-| GET | `/` | 一覧取得 | 必要 |
-| POST | `/` | 作成 | 必要 |
-| GET | `/:id` | 詳細取得 | 必要 |
-| PUT | `/:id` | 更新 | 必要 |
-| DELETE | `/:id` | 削除 | 必要 |
-| GET | `/calendar` | カレンダー用 | 必要 |
+| Method | Path        | 説明         | 認証 |
+| ------ | ----------- | ------------ | ---- |
+| GET    | `/`         | 一覧取得     | 必要 |
+| POST   | `/`         | 作成         | 必要 |
+| GET    | `/:id`      | 詳細取得     | 必要 |
+| PUT    | `/:id`      | 更新         | 必要 |
+| DELETE | `/:id`      | 削除         | 必要 |
+| GET    | `/calendar` | カレンダー用 | 必要 |
 
 ## 技術選定の詳細
 
