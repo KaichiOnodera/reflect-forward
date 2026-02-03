@@ -1,0 +1,12 @@
+{
+  "name": "prisma-schema",
+  "private": true,
+  "scripts": {
+    "lint": "echo 'No lint for prisma schema'",
+    "typecheck": "echo 'No typecheck for prisma schema'",
+    "test": "echo 'No tests for prisma schema'"
+  },
+  "dependencies": {
+    "@prisma/client": "6.19.2"
+  }
+}
