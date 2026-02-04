@@ -12,16 +12,16 @@
 
 ### 技術スタック
 
-| カテゴリ | 技術 |
-|---------|------|
-| モノレポ | Turborepo + pnpm (v9.15.0) |
+| カテゴリ       | 技術                                                |
+| -------------- | --------------------------------------------------- |
+| モノレポ       | Turborepo + pnpm (v9.15.0)                          |
 | フロントエンド | Next.js 15 (App Router) + TypeScript + Tailwind CSS |
-| バックエンド | Hono |
-| 認証 | JWT 自前実装 |
-| DB | PostgreSQL (Supabase 本番 / Docker ローカル) |
-| ORM | Prisma |
-| バリデーション | Zod |
-| テスト | Vitest |
+| バックエンド   | Hono                                                |
+| 認証           | JWT 自前実装                                        |
+| DB             | PostgreSQL (Supabase 本番 / Docker ローカル)        |
+| ORM            | Prisma                                              |
+| バリデーション | Zod                                                 |
+| テスト         | Vitest                                              |
 
 ### ディレクトリ構成
 
@@ -73,7 +73,6 @@ docker-compose up -d  # PostgreSQL 起動
 
 アプリケーション全体の「**何を作るか**」「**なぜ作るのか**」「**どう作るのか**」を定義する恒久的なドキュメント。
 アプリケーションの基本設計や方針は変わらない限り更新されない。
-
 
 ##### product-requirements.md - プロダクト要求定義書
 
@@ -150,6 +149,7 @@ docker-compose up -d  # PostgreSQL 起動
 ```
 
 **例：**
+
 - `.steering/20260103-setup-authentication/`
 - `.steering/20260103-refactor-database-schema/`
 - `.steering/20260103-integrate-payment-api/`
@@ -188,6 +188,7 @@ mkdir -p .steering/[YYYYMMDD]-initial-implementation
 ```
 
 作成するドキュメント：
+
 1. `steering/[YYYYMMDD]-initial-implementation/requirements.md` - 初回実装の要求
 2. `.steering/[YYYYMMDD]-initial-implementation/design.md` - 実装設計
 3. `.steering/[YYYYMMDD]-initial-implementation/tasklist.md` - 実装タスク
@@ -266,6 +267,7 @@ mkdir -p .steering/20260515-update-ui-component
 独立した diagrams フォルダは作成せず、手間を最小限に抑える。
 
 **配置例：**
+
 - ER図、データモデル図 → `functional-design.md` 内に記載
 - ユースケース図 → `functional-design.md` または `product-requirements.md` 内に記載
 - 画面遷移図、ワイヤーフレーム → `functional-design.md` 内に記載
@@ -274,6 +276,7 @@ mkdir -p .steering/20260515-update-ui-component
 ### 記述形式
 
 1. **Mermaid記法（推奨）**
+
 - Markdownに直接埋め込める
 - バージョン管理が容易
 - ツール不要で編集可能
@@ -287,8 +290,8 @@ graph TD
 ```
 
 2. **ASCII アート**
-　 - シンプルな図表に使用
-　 - テキストエディタで編集可能
+   　 - シンプルな図表に使用
+   　 - テキストエディタで編集可能
 
 ```
 ┌─────────────┐
@@ -302,11 +305,12 @@ graph TD
 ```
 
 3. **画像ファイル（必要な場合のみ）**
-　 - 複雑なワイヤフレームやモックアップ
-　 - `docs/images/` フォルダに配置
-　 - PNG または SVG 形式を推奨
+   　 - 複雑なワイヤフレームやモックアップ
+   　 - `docs/images/` フォルダに配置
+   　 - PNG または SVG 形式を推奨
 
 ### 図表の更新
+
 - 設計変更時は対応する図表も同時に更新
 - 図表とコードの乖離を防ぐ
 
