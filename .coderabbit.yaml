@@ -1,0 +1,56 @@
+# CodeRabbit Configuration
+# https://docs.coderabbit.ai/guides/configure-coderabbit
+
+language: ja-JP
+
+reviews:
+  # PRの自動レビューを有効化
+  auto_review:
+    enabled: true
+    # ドラフトPRはレビューしない
+    drafts: false
+    # ベースブランチのフィルタ
+    base_branches:
+      - main
+
+  # レビューの詳細設定
+  profile: chill
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: false
+  collapse_walkthrough: false
+  sequence_diagrams: true
+  changed_files_summary: true
+
+  # レビュー対象パス
+  path_filters:
+    - "!**/*.lock"
+    - "!**/pnpm-lock.yaml"
+    - "!**/*.md"
+    - "!.github/**"
+
+  # レビュー観点
+  path_instructions:
+    - path: "apps/web/**"
+      instructions: |
+        Next.js App Router のベストプラクティスに従っているか確認してください。
+        - Server Components と Client Components の適切な使い分け
+        - Tailwind CSS のクラス名の整理
+        - TypeScript の型安全性
+    - path: "apps/api/**"
+      instructions: |
+        Hono API のベストプラクティスに従っているか確認してください。
+        - 適切なエラーハンドリング
+        - セキュリティ（認証・認可、入力バリデーション）
+        - Prisma の N+1 問題
+    - path: "packages/shared/**"
+      instructions: |
+        共有パッケージとして適切か確認してください。
+        - Zod スキーマの正確性
+        - 型定義の汎用性
+
+chat:
+  auto_reply: true
+
+# 早期アクセス機能
+early_access: false

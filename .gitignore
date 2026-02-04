@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs
+dist/
+.next/
+.turbo/
+out/
+
+# Environment variables (IMPORTANT: never commit actual .env files)
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+.cursor/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Testing
+coverage/
+
+# Prisma
+prisma/*.db
+prisma/*.db-journal
+
+# Learning notes (private)
+docs/learning/
+
+# Misc
+*.tsbuildinfo
