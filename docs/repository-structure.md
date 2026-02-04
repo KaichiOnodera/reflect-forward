@@ -143,29 +143,29 @@ apps/web/
 
 ### 3.1 ディレクトリの役割
 
-| ディレクトリ | 役割 |
-|--------------|------|
-| `app/` | ルーティングとページコンポーネント |
-| `app/(auth)/` | 認証不要ページのグループ |
-| `app/(protected)/` | 認証必要ページのグループ |
-| `components/ui/` | 再利用可能な汎用UIコンポーネント |
-| `components/auth/` | 認証機能に特化したコンポーネント |
-| `components/entries/` | 日記機能に特化したコンポーネント |
-| `components/layout/` | ページレイアウト用コンポーネント |
-| `contexts/` | グローバル状態管理（React Context） |
-| `hooks/` | カスタムフック |
-| `lib/` | ユーティリティ関数、APIクライアント |
+| ディレクトリ          | 役割                                |
+| --------------------- | ----------------------------------- |
+| `app/`                | ルーティングとページコンポーネント  |
+| `app/(auth)/`         | 認証不要ページのグループ            |
+| `app/(protected)/`    | 認証必要ページのグループ            |
+| `components/ui/`      | 再利用可能な汎用UIコンポーネント    |
+| `components/auth/`    | 認証機能に特化したコンポーネント    |
+| `components/entries/` | 日記機能に特化したコンポーネント    |
+| `components/layout/`  | ページレイアウト用コンポーネント    |
+| `contexts/`           | グローバル状態管理（React Context） |
+| `hooks/`              | カスタムフック                      |
+| `lib/`                | ユーティリティ関数、APIクライアント |
 
 ### 3.2 ファイル命名規則
 
-| 種類 | 規則 | 例 |
-|------|------|-----|
-| ページ | `page.tsx`（固定） | `app/entries/page.tsx` |
-| レイアウト | `layout.tsx`（固定） | `app/(protected)/layout.tsx` |
-| コンポーネント | PascalCase | `EntryCard.tsx` |
-| フック | camelCase、`use`プレフィックス | `useAuth.ts` |
-| ユーティリティ | camelCase | `api.ts`, `utils.ts` |
-| Context | PascalCase、`Context`サフィックス | `AuthContext.tsx` |
+| 種類           | 規則                              | 例                           |
+| -------------- | --------------------------------- | ---------------------------- |
+| ページ         | `page.tsx`（固定）                | `app/entries/page.tsx`       |
+| レイアウト     | `layout.tsx`（固定）              | `app/(protected)/layout.tsx` |
+| コンポーネント | PascalCase                        | `EntryCard.tsx`              |
+| フック         | camelCase、`use`プレフィックス    | `useAuth.ts`                 |
+| ユーティリティ | camelCase                         | `api.ts`, `utils.ts`         |
+| Context        | PascalCase、`Context`サフィックス | `AuthContext.tsx`            |
 
 ---
 
@@ -205,21 +205,21 @@ apps/api/
 
 ### 4.1 ディレクトリの役割
 
-| ディレクトリ | 役割 |
-|--------------|------|
-| `routes/` | APIエンドポイントの定義 |
-| `middleware/` | リクエスト前後の処理（認証、ログ等） |
-| `lib/` | ユーティリティ（DB接続、JWT、パスワード） |
-| `types/` | TypeScript型定義 |
+| ディレクトリ  | 役割                                      |
+| ------------- | ----------------------------------------- |
+| `routes/`     | APIエンドポイントの定義                   |
+| `middleware/` | リクエスト前後の処理（認証、ログ等）      |
+| `lib/`        | ユーティリティ（DB接続、JWT、パスワード） |
+| `types/`      | TypeScript型定義                          |
 
 ### 4.2 ファイル命名規則
 
-| 種類 | 規則 | 例 |
-|------|------|-----|
-| ルート | リソース名（単数形） | `auth.ts`, `entries.ts` |
-| ミドルウェア | 機能名 | `auth.ts` |
-| ユーティリティ | 機能名 | `jwt.ts`, `prisma.ts` |
-| 型定義 | 用途名 | `context.ts` |
+| 種類           | 規則                 | 例                      |
+| -------------- | -------------------- | ----------------------- |
+| ルート         | リソース名（単数形） | `auth.ts`, `entries.ts` |
+| ミドルウェア   | 機能名               | `auth.ts`               |
+| ユーティリティ | 機能名               | `jwt.ts`, `prisma.ts`   |
+| 型定義         | 用途名               | `context.ts`            |
 
 ---
 
@@ -249,11 +249,11 @@ packages/shared/
 
 ### 5.1 ディレクトリの役割
 
-| ディレクトリ | 役割 |
-|--------------|------|
-| `types/` | 共有型定義（DTOなど） |
-| `validations/` | Zodスキーマ（入力検証） |
-| `constants/` | 定数（メッセージ、設定値） |
+| ディレクトリ   | 役割                       |
+| -------------- | -------------------------- |
+| `types/`       | 共有型定義（DTOなど）      |
+| `validations/` | Zodスキーマ（入力検証）    |
+| `constants/`   | 定数（メッセージ、設定値） |
 
 ### 5.2 エクスポート規則
 
@@ -261,18 +261,18 @@ packages/shared/
 
 ```typescript
 // packages/shared/src/index.ts
-export * from './types/user';
-export * from './types/entry';
-export * from './validations/auth';
-export * from './validations/entry';
-export * from './constants/messages';
+export * from "./types/user";
+export * from "./types/entry";
+export * from "./validations/auth";
+export * from "./validations/entry";
+export * from "./constants/messages";
 ```
 
 ### 5.3 インポート方法
 
 ```typescript
 // apps/web または apps/api から
-import { registerSchema, User, ERROR_MESSAGES } from '@reflect-forward/shared';
+import { registerSchema, User, ERROR_MESSAGES } from "@reflect-forward/shared";
 ```
 
 ---
@@ -305,11 +305,11 @@ pnpm prisma studio       # DB管理画面
 
 ### 6.2 配置場所の選定理由
 
-| 選択肢 | 採用 | 理由 |
-|--------|------|------|
-| ルートディレクトリ | ✗ | 複数アプリからの利用想定だが、現状APIのみ |
-| **apps/api/prisma** | ✓ | 依存関係が明確、シンプル |
-| packages/database | ✗ | 将来の拡張時に検討 |
+| 選択肢              | 採用 | 理由                                      |
+| ------------------- | ---- | ----------------------------------------- |
+| ルートディレクトリ  | ✗    | 複数アプリからの利用想定だが、現状APIのみ |
+| **apps/api/prisma** | ✓    | 依存関係が明確、シンプル                  |
+| packages/database   | ✗    | 将来の拡張時に検討                        |
 
 ---
 
@@ -335,14 +335,14 @@ docs/
 
 ### 7.1 ドキュメントの役割
 
-| ファイル | 内容 |
-|----------|------|
-| product-requirements.md | ビジョン、ターゲット、機能要件、KPI |
-| functional-design.md | 画面設計、API設計、データモデル、セキュリティ |
-| architecture.md | 技術スタック、環境変数、デプロイ、パフォーマンス |
-| repository-structure.md | ディレクトリ構成、命名規則、配置ルール |
-| development-guidelines.md | コーディング規約、Git運用、テスト方針 |
-| adr/*.md | 技術選定の意思決定記録 |
+| ファイル                  | 内容                                             |
+| ------------------------- | ------------------------------------------------ |
+| product-requirements.md   | ビジョン、ターゲット、機能要件、KPI              |
+| functional-design.md      | 画面設計、API設計、データモデル、セキュリティ    |
+| architecture.md           | 技術スタック、環境変数、デプロイ、パフォーマンス |
+| repository-structure.md   | ディレクトリ構成、命名規則、配置ルール           |
+| development-guidelines.md | コーディング規約、Git運用、テスト方針            |
+| adr/\*.md                 | 技術選定の意思決定記録                           |
 
 ---
 
@@ -372,14 +372,14 @@ docs/
 
 ### 9.1 ルートディレクトリ
 
-| ファイル | 用途 |
-|----------|------|
-| `turbo.json` | Turborepo設定（タスク定義、キャッシュ） |
-| `pnpm-workspace.yaml` | pnpmワークスペース定義 |
-| `package.json` | ルートパッケージ（スクリプト、devDependencies） |
-| `docker-compose.yml` | ローカル開発用PostgreSQL |
-| `.prettierrc` | Prettierフォーマット設定 |
-| `.gitignore` | Git除外設定 |
+| ファイル              | 用途                                            |
+| --------------------- | ----------------------------------------------- |
+| `turbo.json`          | Turborepo設定（タスク定義、キャッシュ）         |
+| `pnpm-workspace.yaml` | pnpmワークスペース定義                          |
+| `package.json`        | ルートパッケージ（スクリプト、devDependencies） |
+| `docker-compose.yml`  | ローカル開発用PostgreSQL                        |
+| `.prettierrc`         | Prettierフォーマット設定                        |
+| `.gitignore`          | Git除外設定                                     |
 
 ### 9.2 turbo.json
 
@@ -405,8 +405,8 @@ docs/
 
 ```yaml
 packages:
-  - 'apps/*'
-  - 'packages/*'
+  - "apps/*"
+  - "packages/*"
 ```
 
 ---
@@ -415,23 +415,23 @@ packages:
 
 ### 10.1 新規ファイル作成時の判断基準
 
-| 条件 | 配置先 |
-|------|--------|
-| フロント/バック両方で使う型 | `packages/shared/src/types/` |
+| 条件                                    | 配置先                             |
+| --------------------------------------- | ---------------------------------- |
+| フロント/バック両方で使う型             | `packages/shared/src/types/`       |
 | フロント/バック両方で使うバリデーション | `packages/shared/src/validations/` |
-| フロントのみで使うコンポーネント | `apps/web/src/components/` |
-| フロントのみで使うフック | `apps/web/src/hooks/` |
-| APIエンドポイント | `apps/api/src/routes/` |
-| DBアクセスロジック | `apps/api/src/lib/` |
+| フロントのみで使うコンポーネント        | `apps/web/src/components/`         |
+| フロントのみで使うフック                | `apps/web/src/hooks/`              |
+| APIエンドポイント                       | `apps/api/src/routes/`             |
+| DBアクセスロジック                      | `apps/api/src/lib/`                |
 
 ### 10.2 コンポーネント配置の判断
 
-| 条件 | 配置先 |
-|------|--------|
-| 複数機能で使う汎用UI | `components/ui/` |
-| 認証機能専用 | `components/auth/` |
-| 日記機能専用 | `components/entries/` |
-| ページレイアウト用 | `components/layout/` |
+| 条件                 | 配置先                |
+| -------------------- | --------------------- |
+| 複数機能で使う汎用UI | `components/ui/`      |
+| 認証機能専用         | `components/auth/`    |
+| 日記機能専用         | `components/entries/` |
+| ページレイアウト用   | `components/layout/`  |
 
 ### 10.3 禁止事項
 
@@ -446,25 +446,25 @@ packages:
 
 ### 11.1 エイリアス設定
 
-| エイリアス | パス | 使用場所 |
-|------------|------|----------|
-| `@/` | `./src/` | apps/web |
-| `@reflect-forward/shared` | packages/shared | 全体 |
+| エイリアス                | パス            | 使用場所 |
+| ------------------------- | --------------- | -------- |
+| `@/`                      | `./src/`        | apps/web |
+| `@reflect-forward/shared` | packages/shared | 全体     |
 
 ### 11.2 インポート順序
 
 ```typescript
 // 1. 外部パッケージ
-import { useState } from 'react';
-import { z } from 'zod';
+import { useState } from "react";
+import { z } from "zod";
 
 // 2. 内部パッケージ（shared）
-import { registerSchema } from '@reflect-forward/shared';
+import { registerSchema } from "@reflect-forward/shared";
 
 // 3. 内部モジュール（絶対パス）
-import { Button } from '@/components/ui/Button';
-import { useAuth } from '@/hooks/useAuth';
+import { Button } from "@/components/ui/Button";
+import { useAuth } from "@/hooks/useAuth";
 
 // 4. 相対パス（同一ディレクトリ内のみ）
-import { helper } from './helper';
+import { helper } from "./helper";
 ```
