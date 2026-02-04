@@ -29,10 +29,9 @@
 apps/
   web/           → Next.js フロントエンド
   api/           → Hono バックエンド
+    prisma/      → Prisma スキーマ・マイグレーション
 packages/
   shared/        → 共通の型定義・Zod スキーマ
-prisma/
-  schema.prisma  → DB スキーマ（User, DiaryEntry, RefreshToken）
 docs/            → 永続的ドキュメント
 .steering/       → 作業単位のドキュメント
 ```
@@ -58,7 +57,7 @@ docker-compose up -d  # PostgreSQL 起動
 
 ### 重要なファイル
 
-- `prisma/schema.prisma` - DB スキーマ定義
+- `apps/api/prisma/schema.prisma` - DB スキーマ定義
 - `packages/shared/src/validations/` - Zod バリデーション
 - `packages/shared/src/types/` - 共有型定義
 - `.env.example` - 環境変数テンプレート
