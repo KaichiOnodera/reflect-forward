@@ -70,11 +70,11 @@ docker-compose up -d  # PostgreSQL 起動
 
 このプロジェクトでは以下の MCP サーバーを利用可能。
 
-| サーバー   | 用途                                   | 備考             |
-| ---------- | -------------------------------------- | ---------------- |
-| GitHub     | Issue/PR操作、ブランチ管理             | GITHUB_TOKEN必須 |
-| PostgreSQL | スキーマ確認、クエリ実行               | 読み取り専用     |
-| Context7   | 最新ライブラリドキュメント取得         | 追加設定不要     |
+| サーバー   | 用途                           | 備考             |
+| ---------- | ------------------------------ | ---------------- |
+| GitHub     | Issue/PR操作、ブランチ管理     | GITHUB_TOKEN必須 |
+| PostgreSQL | スキーマ確認、クエリ実行       | 読み取り専用     |
+| Context7   | 最新ライブラリドキュメント取得 | 追加設定不要     |
 
 ### セットアップ
 
@@ -83,6 +83,7 @@ docker-compose up -d  # PostgreSQL 起動
    - 必要なスコープ: `repo`, `read:org`, `read:user`
 
 2. **環境変数の設定**
+
    ```bash
    # .env ファイルに追加
    GITHUB_TOKEN=ghp_your_actual_token_here
@@ -97,16 +98,19 @@ docker-compose up -d  # PostgreSQL 起動
 ### 利用例
 
 **GitHub MCP:**
+
 - リポジトリのIssue一覧を取得
 - PRの情報を確認
 - ブランチ状況の把握
 
 **PostgreSQL MCP:**
+
 - テーブル一覧の取得
 - スキーマ情報の確認
 - データの参照（読み取り専用）
 
 **Context7 MCP:**
+
 - Next.js、Prisma、Honoなどの最新ドキュメントを参照
 - バージョン固有の正確な情報を取得
 - 「use context7」を含むプロンプトでドキュメント参照を有効化
