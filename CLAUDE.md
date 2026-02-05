@@ -70,11 +70,16 @@ docker-compose up -d  # PostgreSQL 起動
 
 このプロジェクトでは以下の MCP サーバーを利用可能。
 
-| サーバー   | 用途                           | 備考             |
-| ---------- | ------------------------------ | ---------------- |
-| GitHub     | Issue/PR操作、ブランチ管理     | GITHUB_TOKEN必須 |
-| PostgreSQL | スキーマ確認、クエリ実行       | 読み取り専用     |
-| Context7   | 最新ライブラリドキュメント取得 | 追加設定不要     |
+| サーバー   | 用途                           | 備考                  |
+| ---------- | ------------------------------ | --------------------- |
+| GitHub     | Issue/PR操作、ブランチ管理     | Docker + GITHUB_TOKEN |
+| PostgreSQL | スキーマ確認、クエリ実行       | uvx + 読み取り専用    |
+| Context7   | 最新ライブラリドキュメント取得 | npx（追加設定不要）   |
+
+### 前提条件
+
+- **Docker**: GitHub MCPサーバー用（`ghcr.io/github/github-mcp-server`）
+- **uv**: PostgreSQL MCPサーバー用（`uvx postgres-mcp`）
 
 ### セットアップ
 
@@ -86,10 +91,11 @@ docker-compose up -d  # PostgreSQL 起動
 
    ```bash
    # .env ファイルに追加
-   GITHUB_TOKEN=ghp_your_actual_token_here
+   GITHUB_TOKEN=your_github_token_here
    ```
 
 3. **動作確認**
+
    ```bash
    # MCP サーバー一覧を確認
    claude mcp list

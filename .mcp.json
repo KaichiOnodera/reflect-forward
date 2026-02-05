@@ -1,21 +1,25 @@
 {
   "mcpServers": {
     "github": {
-      "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-github"],
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "-e",
+        "GITHUB_PERSONAL_ACCESS_TOKEN",
+        "ghcr.io/github/github-mcp-server"
+      ],
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
       }
     },
     "postgres": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@crystaldba/postgres-mcp",
-        "--connection-string",
-        "${DATABASE_URL}",
-        "--read-only"
-      ]
+      "command": "uvx",
+      "args": ["postgres-mcp", "--access-mode=read-only"],
+      "env": {
+        "DATABASE_URI": "${DATABASE_URL}"
+      }
     },
     "context7": {
       "command": "npx",
