@@ -64,6 +64,61 @@ docker-compose up -d  # PostgreSQL 起動
 
 ---
 
+## MCP サーバー
+
+### 概要
+
+このプロジェクトでは以下の MCP サーバーを利用可能。
+
+| サーバー   | 用途                                   | 備考             |
+| ---------- | -------------------------------------- | ---------------- |
+| GitHub     | Issue/PR操作、ブランチ管理             | GITHUB_TOKEN必須 |
+| PostgreSQL | スキーマ確認、クエリ実行               | 読み取り専用     |
+| Context7   | 最新ライブラリドキュメント取得         | 追加設定不要     |
+
+### セットアップ
+
+1. **GitHub Personal Access Token の作成**
+   - https://github.com/settings/tokens で新しいトークンを作成
+   - 必要なスコープ: `repo`, `read:org`, `read:user`
+
+2. **環境変数の設定**
+   ```bash
+   # .env ファイルに追加
+   GITHUB_TOKEN=ghp_your_actual_token_here
+   ```
+
+3. **動作確認**
+   ```bash
+   # MCP サーバー一覧を確認
+   claude mcp list
+   ```
+
+### 利用例
+
+**GitHub MCP:**
+- リポジトリのIssue一覧を取得
+- PRの情報を確認
+- ブランチ状況の把握
+
+**PostgreSQL MCP:**
+- テーブル一覧の取得
+- スキーマ情報の確認
+- データの参照（読み取り専用）
+
+**Context7 MCP:**
+- Next.js、Prisma、Honoなどの最新ドキュメントを参照
+- バージョン固有の正確な情報を取得
+- 「use context7」を含むプロンプトでドキュメント参照を有効化
+
+### 注意事項
+
+- PostgreSQL MCPは読み取り専用モードで運用（安全性のため）
+- 本番データベースへの接続は避け、ローカルDocker環境を使用すること
+- GITHUB_TOKENは最小権限スコープで作成し、定期的にローテーションすること
+
+---
+
 ## ドキュメント管理
 
 ### ドキュメントの分類
