@@ -2,14 +2,11 @@
   "name": "Reflect Forward Dev",
   "build": {
     "dockerfile": "Dockerfile",
-    "context": ".."
+    "context": "."
   },
-  "workspaceFolder": "/workspace",
-  "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind,consistency=cached",
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
 
-  "features": {
-    "ghcr.io/devcontainers/features/docker-in-docker:2": {}
-  },
+  "features": {},
 
   "forwardPorts": [3000, 3001, 5432],
 
@@ -26,7 +23,7 @@
         "editor.formatOnSave": true,
         "editor.defaultFormatter": "esbenp.prettier-vscode",
         "editor.codeActionsOnSave": {
-          "source.fixAll.eslint": "explicit"
+          "source.fixAll.eslint": "always"
         }
       }
     }

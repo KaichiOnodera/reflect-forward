@@ -8,27 +8,19 @@ RUN apt-get update && apt-get install -y \
     postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
-# pnpm インストール（バージョン固定で再現性確保）
+# pnpm の設定
+# PNPM_HOME を定義し、PATH に追加することでグローバルインストールを可能にします
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+
+# pnpm インストール
 RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
 
-# Turbo グローバルインストール（バージョン固定）
+# Turbo グローバルインストール（これで PATH が通っているので成功します）
 RUN pnpm add -g turbo@2.3.3
 
 # 作業ディレクトリ
 WORKDIR /workspace
+RUN chown -R node:node /workspace
 
-# 非 root ユーザー設定（セキュリティ）
-ARG USERNAME=node
-ARG USER_UID=1000
-ARG USER_GID=$USER_UID
-
-RUN if [ "$USERNAME" != "node" ]; then \
-        groupadd --gid $USER_GID $USERNAME \
-        && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME; \
-    elif [ "$USER_GID" != "1000" ] || [ "$USER_UID" != "1000" ]; then \
-        groupmod --gid $USER_GID $USERNAME \
-        && usermod --uid $USER_UID --gid $USER_GID $USERNAME \
-        && chown -R $USER_UID:$USER_GID /home/$USERNAME; \
-    fi
-
-USER $USERNAME
+# rootのままビルドを終え、実行ユーザーは devcontainer.json に任せる

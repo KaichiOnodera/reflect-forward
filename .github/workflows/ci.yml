@@ -30,10 +30,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        env:
-          DATABASE_URL: "postgresql://dummy:dummy@localhost:5432/dummy"
-          PRISMA_GENERATE_SKIP_AUTOINSTALL: "true"
-        run: pnpm --filter @reflect-forward/api run prisma:generate
+        run: pnpm --filter @reflect-forward/api exec prisma generate --schema=prisma/schema.prisma
 
       - name: Format Check
         run: pnpm format:check
@@ -67,10 +64,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        env:
-          DATABASE_URL: "postgresql://dummy:dummy@localhost:5432/dummy"
-          PRISMA_GENERATE_SKIP_AUTOINSTALL: "true"
-        run: pnpm --filter @reflect-forward/api run prisma:generate
+        run: pnpm --filter @reflect-forward/api exec prisma generate --schema=prisma/schema.prisma
 
       - name: Test
         run: pnpm test
@@ -98,10 +92,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate Prisma Client
-        env:
-          DATABASE_URL: "postgresql://dummy:dummy@localhost:5432/dummy"
-          PRISMA_GENERATE_SKIP_AUTOINSTALL: "true"
-        run: pnpm --filter @reflect-forward/api run prisma:generate
+        run: pnpm --filter @reflect-forward/api exec prisma generate --schema=prisma/schema.prisma
 
       - name: Build
         run: pnpm build
