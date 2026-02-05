@@ -39,5 +39,8 @@ prisma/*.db-journal
 # Learning notes (private)
 docs/learning/
 
+# Claude Code local settings
+.claude/settings.local.json
+
 # Misc
 *.tsbuildinfo
