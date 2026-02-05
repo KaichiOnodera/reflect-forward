@@ -20,7 +20,8 @@ RUN corepack enable && corepack prepare pnpm@9.15.0 --activate
 RUN pnpm add -g turbo@2.3.3
 
 # 作業ディレクトリ
-WORKDIR /workspace
-RUN chown -R node:node /workspace
+RUN mkdir -p /workspaces
+WORKDIR /workspaces
+RUN chown -R node:node /workspaces
 
 # rootのままビルドを終え、実行ユーザーは devcontainer.json に任せる
