@@ -1,10 +1,6 @@
 import { Hono } from "hono";
 import { zValidator } from "@hono/zod-validator";
-import {
-  registerSchema,
-  loginSchema,
-  refreshTokenSchema,
-} from "@reflect-forward/shared";
+import { registerSchema, loginSchema, refreshTokenSchema } from "@reflect-forward/shared";
 import { authService, AuthError } from "../services/authService.js";
 import { authMiddleware } from "../middleware/auth.js";
 import type { Variables } from "../types/context.js";

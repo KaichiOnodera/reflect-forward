@@ -1,11 +1,7 @@
 import { userRepository } from "../repositories/userRepository.js";
 import { refreshTokenRepository } from "../repositories/refreshTokenRepository.js";
 import { hashPassword, verifyPassword } from "../lib/password.js";
-import {
-  generateAccessToken,
-  generateRefreshToken,
-  getRefreshTokenExpiresAt,
-} from "../lib/jwt.js";
+import { generateAccessToken, generateRefreshToken, getRefreshTokenExpiresAt } from "../lib/jwt.js";
 
 export interface RegisterInput {
   email: string;

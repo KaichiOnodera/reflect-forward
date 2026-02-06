@@ -4,8 +4,8 @@
 
 ### PR分割
 
-| PR | 内容 | ブランチ |
-|----|------|----------|
+| PR      | 内容                                                                  | ブランチ                   |
+| ------- | --------------------------------------------------------------------- | -------------------------- |
 | **PR1** | API認証基盤（lib, repositories, services, tests, routes, middleware） | `feature/phase-1-auth-api` |
 | **PR2** | Web認証機能（UIコンポーネント, APIクライアント, AuthContext, ページ） | `feature/phase-1-auth-web` |
 
