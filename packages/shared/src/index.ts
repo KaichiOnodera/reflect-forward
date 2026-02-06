@@ -1,7 +1,7 @@
 // Types
-export * from "./types/user";
-export * from "./types/entry";
+export * from "./types/user.js";
+export * from "./types/entry.js";
 
 // Validations
-export * from "./validations/auth";
-export * from "./validations/entry";
+export * from "./validations/auth.js";
+export * from "./validations/entry.js";
