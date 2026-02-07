@@ -189,6 +189,13 @@ apps/api/
 │   ├── middleware/             # ミドルウェア
 │   │   └── auth.ts             # 認証ミドルウェア
 │   │
+│   ├── services/               # ビジネスロジック
+│   │   └── authService.ts      # 認証サービス
+│   │
+│   ├── repositories/           # データアクセス層
+│   │   ├── userRepository.ts          # ユーザーリポジトリ
+│   │   └── refreshTokenRepository.ts  # リフレッシュトークンリポジトリ
+│   │
 │   ├── lib/                    # ユーティリティ
 │   │   ├── prisma.ts           # Prisma Clientインスタンス
 │   │   ├── jwt.ts              # JWT生成・検証
@@ -205,12 +212,14 @@ apps/api/
 
 ### 4.1 ディレクトリの役割
 
-| ディレクトリ  | 役割                                      |
-| ------------- | ----------------------------------------- |
-| `routes/`     | APIエンドポイントの定義                   |
-| `middleware/` | リクエスト前後の処理（認証、ログ等）      |
-| `lib/`        | ユーティリティ（DB接続、JWT、パスワード） |
-| `types/`      | TypeScript型定義                          |
+| ディレクトリ    | 役割                                      |
+| --------------- | ----------------------------------------- |
+| `routes/`       | APIエンドポイントの定義                   |
+| `services/`     | ビジネスロジック                          |
+| `repositories/` | データアクセス層（Prisma操作）            |
+| `middleware/`   | リクエスト前後の処理（認証、ログ等）      |
+| `lib/`          | ユーティリティ（DB接続、JWT、パスワード） |
+| `types/`        | TypeScript型定義                          |
 
 ### 4.2 ファイル命名規則
 
@@ -422,7 +431,8 @@ packages:
 | フロントのみで使うコンポーネント        | `apps/web/src/components/`         |
 | フロントのみで使うフック                | `apps/web/src/hooks/`              |
 | APIエンドポイント                       | `apps/api/src/routes/`             |
-| DBアクセスロジック                      | `apps/api/src/lib/`                |
+| ビジネスロジック                        | `apps/api/src/services/`           |
+| DBアクセスロジック                      | `apps/api/src/repositories/`       |
 
 ### 10.2 コンポーネント配置の判断
 

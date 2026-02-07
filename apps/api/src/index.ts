@@ -3,6 +3,7 @@ import { Hono } from "hono";
 import type { Context } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
+import authRoutes from "./routes/auth.js";
 
 const app = new Hono();
 
@@ -31,9 +32,8 @@ app.onError((err: Error, c: Context) => {
   return c.json({ error: "Internal Server Error" }, 500);
 });
 
-// TODO: Add routes
-// app.route("/api/auth", authRoutes);
-// app.route("/api/entries", entriesRoutes);
+// Routes
+app.route("/api/auth", authRoutes);
 
 const port = Number(process.env.PORT) || 3001;
 
