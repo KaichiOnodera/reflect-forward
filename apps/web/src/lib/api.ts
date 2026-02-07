@@ -1,4 +1,6 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+"use client";
+
+const apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
 export class ApiError extends Error {
   constructor(
@@ -30,7 +32,7 @@ async function refreshAccessToken(): Promise<RefreshResponse> {
     throw new ApiError(401, "リフレッシュトークンがありません");
   }
 
-  const res = await fetch(`${API_BASE_URL}/api/auth/refresh`, {
+  const res = await fetch(`${apiBaseUrl}/api/auth/refresh`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ refreshToken }),
@@ -56,7 +58,7 @@ export async function apiFetch<T>(path: string, options: RequestInit = {}): Prom
     headers["Authorization"] = `Bearer ${accessToken}`;
   }
 
-  let res = await fetch(`${API_BASE_URL}${path}`, {
+  let res = await fetch(`${apiBaseUrl}${path}`, {
     ...options,
     headers,
   });
@@ -74,7 +76,7 @@ export async function apiFetch<T>(path: string, options: RequestInit = {}): Prom
       localStorage.setItem("refreshToken", tokens.refreshToken);
 
       headers["Authorization"] = `Bearer ${tokens.accessToken}`;
-      res = await fetch(`${API_BASE_URL}${path}`, {
+      res = await fetch(`${apiBaseUrl}${path}`, {
         ...options,
         headers,
       });

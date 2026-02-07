@@ -49,26 +49,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const res = await api.login({ email, password });
     setAccessToken(res.tokens.accessToken);
     localStorage.setItem("refreshToken", res.tokens.refreshToken);
-    setUser({
-      id: res.user.id,
-      email: res.user.email,
-      displayName: res.user.displayName,
-      avatarUrl: null,
-      createdAt: "",
-    });
+    const me = await api.getMe();
+    setUser(me);
   }, []);
 
   const register = useCallback(async (email: string, password: string, displayName?: string) => {
     const res = await api.register({ email, password, displayName });
     setAccessToken(res.tokens.accessToken);
     localStorage.setItem("refreshToken", res.tokens.refreshToken);
-    setUser({
-      id: res.user.id,
-      email: res.user.email,
-      displayName: res.user.displayName,
-      avatarUrl: null,
-      createdAt: "",
-    });
+    const me = await api.getMe();
+    setUser(me);
   }, []);
 
   const logout = useCallback(async () => {
