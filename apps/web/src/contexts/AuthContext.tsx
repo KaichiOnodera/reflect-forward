@@ -1,30 +1,14 @@
 "use client";
 
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-  type ReactNode,
-} from "react";
-import {
-  api,
-  ApiError,
-  setAccessToken,
-  type UserResponse,
-} from "@/lib/api";
+import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
+import { api, ApiError, setAccessToken, type UserResponse } from "@/lib/api";
 
 interface AuthContextType {
   user: UserResponse | null;
   isLoading: boolean;
   isAuthenticated: boolean;
   login: (email: string, password: string) => Promise<void>;
-  register: (
-    email: string,
-    password: string,
-    displayName?: string,
-  ) => Promise<void>;
+  register: (email: string, password: string, displayName?: string) => Promise<void>;
   logout: () => Promise<void>;
 }
 
@@ -74,21 +58,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     });
   }, []);
 
-  const register = useCallback(
-    async (email: string, password: string, displayName?: string) => {
-      const res = await api.register({ email, password, displayName });
-      setAccessToken(res.tokens.accessToken);
-      localStorage.setItem("refreshToken", res.tokens.refreshToken);
-      setUser({
-        id: res.user.id,
-        email: res.user.email,
-        displayName: res.user.displayName,
-        avatarUrl: null,
-        createdAt: "",
-      });
-    },
-    [],
-  );
+  const register = useCallback(async (email: string, password: string, displayName?: string) => {
+    const res = await api.register({ email, password, displayName });
+    setAccessToken(res.tokens.accessToken);
+    localStorage.setItem("refreshToken", res.tokens.refreshToken);
+    setUser({
+      id: res.user.id,
+      email: res.user.email,
+      displayName: res.user.displayName,
+      avatarUrl: null,
+      createdAt: "",
+    });
+  }, []);
 
   const logout = useCallback(async () => {
     try {

@@ -44,9 +44,7 @@ export function LoginForm() {
     } catch (e) {
       if (e instanceof ApiError) {
         setApiError(
-          e.status === 401
-            ? "メールアドレスまたはパスワードが正しくありません"
-            : e.message,
+          e.status === 401 ? "メールアドレスまたはパスワードが正しくありません" : e.message
         );
       } else {
         setApiError("エラーが発生しました。もう一度お試しください");
@@ -58,15 +56,9 @@ export function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-      <h1 className="text-2xl font-bold text-center text-gray-900">
-        ログイン
-      </h1>
+      <h1 className="text-2xl font-bold text-center text-gray-900">ログイン</h1>
 
-      {apiError && (
-        <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">
-          {apiError}
-        </div>
-      )}
+      {apiError && <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">{apiError}</div>}
 
       <Input
         label="メールアドレス"

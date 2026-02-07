@@ -48,11 +48,7 @@ export function RegisterForm() {
       router.push("/dashboard");
     } catch (e) {
       if (e instanceof ApiError) {
-        setApiError(
-          e.status === 409
-            ? "このメールアドレスは既に登録されています"
-            : e.message,
-        );
+        setApiError(e.status === 409 ? "このメールアドレスは既に登録されています" : e.message);
       } else {
         setApiError("エラーが発生しました。もう一度お試しください");
       }
@@ -63,15 +59,9 @@ export function RegisterForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-      <h1 className="text-2xl font-bold text-center text-gray-900">
-        新規登録
-      </h1>
+      <h1 className="text-2xl font-bold text-center text-gray-900">新規登録</h1>
 
-      {apiError && (
-        <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">
-          {apiError}
-        </div>
-      )}
+      {apiError && <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">{apiError}</div>}
 
       <Input
         label="メールアドレス"

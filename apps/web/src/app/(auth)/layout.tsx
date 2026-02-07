@@ -6,11 +6,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Spinner } from "@/components/ui/Spinner";
 import { Card } from "@/components/ui/Card";
 
-export default function AuthLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AuthLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const { isAuthenticated, isLoading } = useAuth();
 
@@ -38,9 +34,7 @@ export default function AuthLayout({
         <h1 className="text-3xl font-bold text-gray-900">Reflect Forward</h1>
         <p className="mt-2 text-gray-600">振り返って前進する</p>
       </div>
-      <Card className="w-full max-w-md">
-        {children}
-      </Card>
+      <Card className="w-full max-w-md">{children}</Card>
     </div>
   );
 }

@@ -12,9 +12,7 @@ export default function DashboardPage() {
         ようこそ、{user?.displayName || user?.email} さん
       </h2>
       <Card>
-        <p className="text-gray-600">
-          日記機能は今後のアップデートで追加予定です。
-        </p>
+        <p className="text-gray-600">日記機能は今後のアップデートで追加予定です。</p>
       </Card>
     </div>
   );
