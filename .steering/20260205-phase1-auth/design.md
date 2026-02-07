@@ -47,22 +47,22 @@ apps/api/src/
 
 ### 各層の責任
 
-| 層           | ファイル                      | 責任                                                           |
-| ------------ | ----------------------------- | -------------------------------------------------------------- |
-| routes       | `auth.ts`                     | HTTPリクエストのパース、バリデーション、レスポンス生成         |
-| services     | `authService.ts`              | ビジネスロジック（重複チェック→ハッシュ化→保存→トークン発行）  |
-| repositories | `userRepository.ts`           | `findByEmail()`, `create()`, `findById()`                      |
-| repositories | `refreshTokenRepository.ts`   | `create()`, `findByToken()`, `delete()`                        |
+| 層           | ファイル                    | 責任                                                          |
+| ------------ | --------------------------- | ------------------------------------------------------------- |
+| routes       | `auth.ts`                   | HTTPリクエストのパース、バリデーション、レスポンス生成        |
+| services     | `authService.ts`            | ビジネスロジック（重複チェック→ハッシュ化→保存→トークン発行） |
+| repositories | `userRepository.ts`         | `findByEmail()`, `create()`, `findById()`                     |
+| repositories | `refreshTokenRepository.ts` | `create()`, `findByToken()`, `delete()`                       |
 
 ### APIエンドポイント
 
-| Method | Path                 | 処理                           |
-| ------ | -------------------- | ------------------------------ |
-| POST   | `/api/auth/register` | ユーザー登録 + トークン発行    |
-| POST   | `/api/auth/login`    | ログイン + トークン発行        |
-| POST   | `/api/auth/refresh`  | トークンリフレッシュ           |
-| POST   | `/api/auth/logout`   | ログアウト（トークン削除）     |
-| GET    | `/api/auth/me`       | 現在のユーザー情報取得         |
+| Method | Path                 | 処理                        |
+| ------ | -------------------- | --------------------------- |
+| POST   | `/api/auth/register` | ユーザー登録 + トークン発行 |
+| POST   | `/api/auth/login`    | ログイン + トークン発行     |
+| POST   | `/api/auth/refresh`  | トークンリフレッシュ        |
+| POST   | `/api/auth/logout`   | ログアウト（トークン削除）  |
+| GET    | `/api/auth/me`       | 現在のユーザー情報取得      |
 
 ### 追加依存関係
 
@@ -102,9 +102,9 @@ apps/web/src/
 
 ## 変更ファイル（shared）
 
-| ファイル                          | 変更内容                                     |
-| --------------------------------- | -------------------------------------------- |
-| `packages/shared/src/index.ts`    | import拡張子を.jsに修正（NodeNext対応）      |
+| ファイル                       | 変更内容                                |
+| ------------------------------ | --------------------------------------- |
+| `packages/shared/src/index.ts` | import拡張子を.jsに修正（NodeNext対応） |
 
 ## 影響範囲
 

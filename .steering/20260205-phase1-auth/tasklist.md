@@ -4,8 +4,8 @@
 
 ### PR分割
 
-| PR | 内容 | ブランチ |
-|----|------|----------|
+| PR      | 内容                                                                  | ブランチ                   |
+| ------- | --------------------------------------------------------------------- | -------------------------- |
 | **PR1** | API認証基盤（lib, repositories, services, tests, routes, middleware） | `feature/phase-1-auth-api` |
 | **PR2** | Web認証機能（UIコンポーネント, APIクライアント, AuthContext, ページ） | `feature/phase-1-auth-web` |
 
@@ -32,47 +32,49 @@ main
 
 ## 実装タスク
 
-### Phase 1-A: API基盤（lib層）
+### Phase 1-A: API基盤（lib層） ✅
 
-- [ ] `uuid` 依存関係を追加
-- [ ] `src/lib/prisma.ts` - Prisma Clientシングルトン作成
-- [ ] `src/lib/password.ts` - bcryptラッパー（hash, verify）作成
-- [ ] `src/lib/jwt.ts` - JWT生成・検証、リフレッシュトークン生成作成
-- [ ] `src/types/context.ts` - Hono Context型定義作成
+- [x] `uuid` 依存関係を追加
+- [x] `src/lib/prisma.ts` - Prisma Clientシングルトン作成
+- [x] `src/lib/password.ts` - bcryptラッパー（hash, verify）作成
+- [x] `src/lib/jwt.ts` - JWT生成・検証、リフレッシュトークン生成作成
+- [x] `src/types/context.ts` - Hono Context型定義作成
 
-### Phase 1-B: APIリポジトリ層
+### Phase 1-B: APIリポジトリ層 ✅
 
-- [ ] `src/repositories/userRepository.ts` - ユーザーリポジトリ作成
+- [x] `src/repositories/userRepository.ts` - ユーザーリポジトリ作成
   - `findByEmail(email: string)`
   - `findById(id: string)`
   - `create(data: CreateUserData)`
-- [ ] `src/repositories/refreshTokenRepository.ts` - リフレッシュトークンリポジトリ作成
+- [x] `src/repositories/refreshTokenRepository.ts` - リフレッシュトークンリポジトリ作成
   - `create(data: CreateRefreshTokenData)`
   - `findByToken(token: string)`
   - `deleteByToken(token: string)`
   - `deleteByUserId(userId: string)`
 
-### Phase 1-C: APIサービス層
+### Phase 1-C: APIサービス層 ✅
 
-- [ ] `src/services/authService.ts` - 認証サービス作成
+- [x] `src/services/authService.ts` - 認証サービス作成
   - `register(input: RegisterInput)` - 登録ロジック
   - `login(input: LoginInput)` - ログインロジック
   - `refresh(token: string)` - トークンリフレッシュロジック
   - `logout(token: string)` - ログアウトロジック
   - `getCurrentUser(userId: string)` - ユーザー取得ロジック
 
-### Phase 1-C': APIサービス層テスト
+### Phase 1-C': APIサービス層テスト ✅
 
-- [ ] `src/services/__tests__/authService.test.ts` - 認証サービスユニットテスト
+- [x] `src/services/__tests__/authService.test.ts` - 認証サービスユニットテスト
   - register: 正常系、メール重複エラー
   - login: 正常系、認証エラー
   - refresh: 正常系、トークン無効エラー
 
-### Phase 1-D: APIルート・ミドルウェア
+### Phase 1-D: APIルート・ミドルウェア ✅
 
-- [ ] `src/middleware/auth.ts` - 認証ミドルウェア作成
-- [ ] `src/routes/auth.ts` - 認証ルート作成（サービス層を呼び出す）
-- [ ] `src/index.ts` - authルートをマウント
+- [x] `src/middleware/auth.ts` - 認証ミドルウェア作成
+- [x] `src/routes/auth.ts` - 認証ルート作成（サービス層を呼び出す）
+- [x] `src/index.ts` - authルートをマウント
+
+**PR #16 作成済み - CIの結果待ち**
 
 ### Phase 1-E: Web UIコンポーネント
 
