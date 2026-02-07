@@ -82,6 +82,8 @@ export async function apiFetch<T>(path: string, options: RequestInit = {}): Prom
       });
     } catch {
       refreshPromise = null;
+      setAccessToken(null);
+      localStorage.removeItem("refreshToken");
       throw new ApiError(401, "認証の有効期限が切れました");
     }
   }
