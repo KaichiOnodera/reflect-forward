@@ -195,11 +195,7 @@ describe("authService", () => {
         },
       });
       vi.mocked(refreshTokenRepository.deleteByToken).mockResolvedValue({
-        id: "token-123",
-        userId: "user-123",
-        token: "old-refresh-token",
-        expiresAt: futureDate,
-        createdAt: new Date(),
+        count: 1,
       });
       vi.mocked(jwt.generateAccessToken).mockReturnValue("new-access-token");
       vi.mocked(jwt.generateRefreshToken).mockReturnValue("new-refresh-token");
@@ -248,11 +244,7 @@ describe("authService", () => {
         },
       });
       vi.mocked(refreshTokenRepository.deleteByToken).mockResolvedValue({
-        id: "token-123",
-        userId: "user-123",
-        token: "expired-token",
-        expiresAt: pastDate,
-        createdAt: new Date(),
+        count: 1,
       });
 
       await expect(authService.refresh("expired-token")).rejects.toMatchObject({

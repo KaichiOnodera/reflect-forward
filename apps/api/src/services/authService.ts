@@ -104,11 +104,7 @@ export const authService = {
   },
 
   async logout(token: string): Promise<void> {
-    try {
-      await refreshTokenRepository.deleteByToken(token);
-    } catch {
-      // トークンが存在しない場合もあるので無視
-    }
+    await refreshTokenRepository.deleteByToken(token);
   },
 
   async getCurrentUser(userId: string) {
