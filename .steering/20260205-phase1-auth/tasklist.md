@@ -76,38 +76,38 @@ main
 
 **PR #16 作成済み - CIの結果待ち**
 
-### Phase 1-E: Web UIコンポーネント
+### Phase 1-E: Web UIコンポーネント ✅
 
-- [ ] `src/components/ui/Button.tsx`
-- [ ] `src/components/ui/Input.tsx`
-- [ ] `src/components/ui/Card.tsx`
-- [ ] `src/components/ui/Spinner.tsx`
+- [x] `src/components/ui/Button.tsx`
+- [x] `src/components/ui/Input.tsx`
+- [x] `src/components/ui/Card.tsx`
+- [x] `src/components/ui/Spinner.tsx`
 
-### Phase 1-F: Web認証機能
+### Phase 1-F: Web認証機能 ✅
 
-- [ ] `src/lib/api.ts` - APIクライアント作成
-- [ ] `src/contexts/AuthContext.tsx` - 認証コンテキスト作成
-- [ ] `src/components/auth/LoginForm.tsx`
-- [ ] `src/components/auth/RegisterForm.tsx`
-- [ ] `src/components/auth/LogoutButton.tsx`
+- [x] `src/lib/api.ts` - APIクライアント作成
+- [x] `src/contexts/AuthContext.tsx` - 認証コンテキスト作成
+- [x] `src/components/auth/LoginForm.tsx`
+- [x] `src/components/auth/RegisterForm.tsx`
+- [x] `src/components/auth/LogoutButton.tsx`
 
-### Phase 1-G: Webページ
+### Phase 1-G: Webページ ✅
 
-- [ ] `src/app/(auth)/layout.tsx` - 認証不要ページレイアウト
-- [ ] `src/app/(auth)/login/page.tsx`
-- [ ] `src/app/(auth)/register/page.tsx`
-- [ ] `src/app/(protected)/layout.tsx` - 認証必要ページレイアウト
-- [ ] `src/app/(protected)/dashboard/page.tsx`
-- [ ] `src/app/layout.tsx` - AuthProvider追加
-- [ ] `src/app/page.tsx` - ランディングページ更新
+- [x] `src/app/(auth)/layout.tsx` - 認証不要ページレイアウト
+- [x] `src/app/(auth)/login/page.tsx`
+- [x] `src/app/(auth)/register/page.tsx`
+- [x] `src/app/(protected)/layout.tsx` - 認証必要ページレイアウト
+- [x] `src/app/(protected)/dashboard/page.tsx`
+- [x] `src/app/layout.tsx` - AuthProvider追加
+- [x] `src/app/page.tsx` - ランディングページ更新
 
-### Phase 1-H: 修正・検証
+### Phase 1-H: 修正・検証 ✅
 
-- [ ] `packages/shared/src/index.ts` - import拡張子修正
-- [ ] `docs/repository-structure.md` - services/, repositories/追記
-- [ ] `pnpm lint` 通過確認
-- [ ] `pnpm build` 通過確認
-- [ ] `pnpm format` 実行
+- [x] `docs/repository-structure.md` - services/, repositories/追記
+- [x] `next.config.ts` - webpack extensionAlias設定（.js→.ts解決）
+- [x] `pnpm lint` 通過確認
+- [x] `pnpm build` 通過確認
+- [x] `pnpm format` 実行
 - [ ] 手動テスト（登録→ログイン→ダッシュボード→ログアウト）
 
 ## 実装順序
