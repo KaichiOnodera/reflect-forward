@@ -115,6 +115,36 @@ export interface UserResponse {
   createdAt: string;
 }
 
+export interface EntryResponse {
+  id: string;
+  content: string | null;
+  shortMemo: string | null;
+  rating: number | null;
+  entryDate: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EntryListResponse {
+  entries: EntryResponse[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+}
+
+export interface CalendarEntry {
+  date: string;
+  count: number;
+  avgRating: number | null;
+}
+
+export interface CalendarResponse {
+  entries: CalendarEntry[];
+}
+
 // API メソッド
 export const api = {
   register(data: { email: string; password: string; displayName?: string }) {
@@ -150,5 +180,65 @@ export const api = {
     return apiFetch<UserResponse>("/api/auth/me", {
       method: "GET",
     });
+  },
+
+  getEntries(params?: {
+    page?: number;
+    limit?: number;
+    from?: string;
+    to?: string;
+    rating?: number;
+  }) {
+    const query = new URLSearchParams();
+    if (params?.page) query.set("page", String(params.page));
+    if (params?.limit) query.set("limit", String(params.limit));
+    if (params?.from) query.set("from", params.from);
+    if (params?.to) query.set("to", params.to);
+    if (params?.rating) query.set("rating", String(params.rating));
+    const qs = query.toString();
+    return apiFetch<EntryListResponse>(`/api/entries${qs ? `?${qs}` : ""}`);
+  },
+
+  getEntry(id: string) {
+    return apiFetch<{ entry: EntryResponse }>(`/api/entries/${id}`);
+  },
+
+  createEntry(data: {
+    content?: string | null;
+    shortMemo?: string | null;
+    rating?: number | null;
+    entryDate: string;
+  }) {
+    return apiFetch<{ entry: EntryResponse }>("/api/entries", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  },
+
+  updateEntry(
+    id: string,
+    data: {
+      content?: string | null;
+      shortMemo?: string | null;
+      rating?: number | null;
+      entryDate?: string;
+    }
+  ) {
+    return apiFetch<{ entry: EntryResponse }>(`/api/entries/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    });
+  },
+
+  deleteEntry(id: string) {
+    return apiFetch<{ message: string }>(`/api/entries/${id}`, {
+      method: "DELETE",
+    });
+  },
+
+  getCalendar(year: number, month: number) {
+    return apiFetch<CalendarResponse>(
+      `/api/entries/calendar?year=${year}&month=${month}`
+    );
   },
 };
