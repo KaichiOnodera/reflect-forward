@@ -47,6 +47,12 @@ export const listEntriesQuerySchema = z
     "開始日は終了日以前である必要があります"
   );
 
+export const calendarQuerySchema = z.object({
+  year: z.coerce.number().int().min(2000).max(2100),
+  month: z.coerce.number().int().min(1).max(12),
+});
+
 export type CreateEntryInput = z.infer<typeof createEntrySchema>;
 export type UpdateEntryInput = z.infer<typeof updateEntrySchema>;
 export type ListEntriesQuery = z.infer<typeof listEntriesQuerySchema>;
+export type CalendarQuery = z.infer<typeof calendarQuerySchema>;
