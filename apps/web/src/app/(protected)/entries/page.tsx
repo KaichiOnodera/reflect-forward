@@ -58,11 +58,7 @@ export default function EntriesPage() {
             </div>
           )}
 
-          <Pagination
-            page={page}
-            totalPages={data.pagination.totalPages}
-            onPageChange={setPage}
-          />
+          <Pagination page={page} totalPages={data.pagination.totalPages} onPageChange={setPage} />
         </>
       )}
     </div>

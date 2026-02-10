@@ -40,10 +40,7 @@ export const entryRepository = {
     });
   },
 
-  async countByUserId(
-    userId: string,
-    options: { from?: string; to?: string; rating?: number }
-  ) {
+  async countByUserId(userId: string, options: { from?: string; to?: string; rating?: number }) {
     const where = buildWhereClause(userId, options);
     return prisma.diaryEntry.count({ where });
   },
@@ -85,8 +82,7 @@ export const entryRepository = {
     if (data.content !== undefined) updateData.content = data.content;
     if (data.shortMemo !== undefined) updateData.shortMemo = data.shortMemo;
     if (data.rating !== undefined) updateData.rating = data.rating;
-    if (data.entryDate !== undefined)
-      updateData.entryDate = new Date(data.entryDate);
+    if (data.entryDate !== undefined) updateData.entryDate = new Date(data.entryDate);
 
     return prisma.diaryEntry.update({
       where: { id },

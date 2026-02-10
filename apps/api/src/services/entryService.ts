@@ -117,9 +117,7 @@ export const entryService = {
       entries: data.map((item) => ({
         date: formatEntryDate(item.entryDate),
         count: item._count.id,
-        avgRating: item._avg.rating
-          ? Math.round(item._avg.rating * 10) / 10
-          : null,
+        avgRating: item._avg.rating ? Math.round(item._avg.rating * 10) / 10 : null,
       })),
     };
   },

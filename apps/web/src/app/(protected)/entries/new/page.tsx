@@ -12,7 +12,15 @@ export default function NewEntryPage() {
 
   // date クエリパラメータで日付をプリセット
   const initialData = dateParam
-    ? { id: "", content: null, shortMemo: null, rating: null, entryDate: dateParam, createdAt: "", updatedAt: "" }
+    ? {
+        id: "",
+        content: null,
+        shortMemo: null,
+        rating: null,
+        entryDate: dateParam,
+        createdAt: "",
+        updatedAt: "",
+      }
     : undefined;
 
   const handleSubmit = async (data: {

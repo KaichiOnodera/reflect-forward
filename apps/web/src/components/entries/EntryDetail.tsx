@@ -22,9 +22,7 @@ export function EntryDetail({ entry, onEdit, onDelete }: EntryDetailProps) {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold text-gray-900">
-          {formatDateWithDay(entry.entryDate)}
-        </h1>
+        <h1 className="text-xl font-bold text-gray-900">{formatDateWithDay(entry.entryDate)}</h1>
         <div className="flex gap-2">
           <Button variant="secondary" onClick={onEdit}>
             編集
@@ -52,9 +50,7 @@ export function EntryDetail({ entry, onEdit, onDelete }: EntryDetailProps) {
       {entry.content && (
         <div>
           <p className="text-sm font-medium text-gray-700 mb-1">本文</p>
-          <div className="whitespace-pre-wrap text-gray-800 leading-relaxed">
-            {entry.content}
-          </div>
+          <div className="whitespace-pre-wrap text-gray-800 leading-relaxed">{entry.content}</div>
         </div>
       )}
     </div>

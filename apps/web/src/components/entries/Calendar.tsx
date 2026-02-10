@@ -116,13 +116,15 @@ export function Calendar({ year, month, entries, onDateClick, onMonthChange }: C
               type="button"
               onClick={() => onDateClick(dateStr)}
               className={`h-14 rounded-md flex flex-col items-center justify-center text-sm transition-colors hover:bg-gray-100 ${
-                dayOfWeek === 0 ? "text-red-500" : dayOfWeek === 6 ? "text-blue-500" : "text-gray-700"
+                dayOfWeek === 0
+                  ? "text-red-500"
+                  : dayOfWeek === 6
+                    ? "text-blue-500"
+                    : "text-gray-700"
               }`}
             >
               <span>{day}</span>
-              {entry && (
-                <span className={`text-xs ${getRatingColor(entry.avgRating)}`}>★</span>
-              )}
+              {entry && <span className={`text-xs ${getRatingColor(entry.avgRating)}`}>★</span>}
             </button>
           );
         })}

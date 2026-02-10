@@ -25,15 +25,11 @@ export function EntryCard({ entry }: EntryCardProps) {
           <span className="text-sm text-gray-600">{formatDateWithDay(entry.entryDate)}</span>
           {entry.rating && <RatingStars value={entry.rating} size="sm" />}
         </div>
-        {entry.shortMemo && (
-          <p className="text-gray-800 line-clamp-2">{entry.shortMemo}</p>
-        )}
+        {entry.shortMemo && <p className="text-gray-800 line-clamp-2">{entry.shortMemo}</p>}
         {!entry.shortMemo && entry.content && (
           <p className="text-gray-500 line-clamp-2">{entry.content}</p>
         )}
-        {!entry.shortMemo && !entry.content && (
-          <p className="text-gray-400 italic">内容なし</p>
-        )}
+        {!entry.shortMemo && !entry.content && <p className="text-gray-400 italic">内容なし</p>}
       </Card>
     </Link>
   );

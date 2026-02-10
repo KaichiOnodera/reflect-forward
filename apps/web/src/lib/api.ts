@@ -237,8 +237,6 @@ export const api = {
   },
 
   getCalendar(year: number, month: number) {
-    return apiFetch<CalendarResponse>(
-      `/api/entries/calendar?year=${year}&month=${month}`
-    );
+    return apiFetch<CalendarResponse>(`/api/entries/calendar?year=${year}&month=${month}`);
   },
 };
