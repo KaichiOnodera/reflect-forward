@@ -13,12 +13,13 @@ export default function DashboardPage() {
 
   const [recentEntries, setRecentEntries] = useState<EntryResponse[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     api
       .getEntries({ limit: 3 })
       .then((res) => setRecentEntries(res.entries))
-      .catch(() => {})
+      .catch(() => setError("日記の取得に失敗しました"))
       .finally(() => setIsLoading(false));
   }, []);
 
@@ -53,6 +54,10 @@ export default function DashboardPage() {
 
         {isLoading ? (
           <p className="text-gray-500 text-sm">読み込み中...</p>
+        ) : error ? (
+          <Card className="p-6">
+            <p className="text-gray-500">{error}</p>
+          </Card>
         ) : recentEntries.length === 0 ? (
           <Card className="p-6">
             <p className="text-gray-500">まだ日記がありません。最初の一歩を踏み出しましょう！</p>

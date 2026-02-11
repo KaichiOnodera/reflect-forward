@@ -102,8 +102,8 @@ export const entryRepository = {
       where: {
         userId,
         entryDate: {
-          gte: new Date(year, month - 1, 1),
-          lt: new Date(year, month, 1),
+          gte: new Date(Date.UTC(year, month - 1, 1)),
+          lt: new Date(Date.UTC(year, month, 1)),
         },
       },
       _count: { id: true },

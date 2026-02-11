@@ -42,6 +42,8 @@ export function Pagination({ page, totalPages, onPageChange }: PaginationProps) 
           className={`h-9 w-9 rounded-md text-sm font-medium transition-colors ${
             p === page ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
           }`}
+          aria-label={`${p}ページ目`}
+          aria-current={p === page ? "page" : undefined}
         >
           {p}
         </button>

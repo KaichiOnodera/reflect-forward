@@ -1,6 +1,7 @@
 "use client";
 
 import { type EntryResponse } from "@/lib/api";
+import { formatDateWithDay } from "@/lib/date";
 import { Button } from "@/components/ui/Button";
 import { RatingStars } from "./RatingStars";
 
@@ -8,14 +9,6 @@ interface EntryDetailProps {
   entry: EntryResponse;
   onEdit: () => void;
   onDelete: () => void;
-}
-
-function formatDateWithDay(dateStr: string): string {
-  const [year, month, day] = dateStr.split("-").map(Number);
-  const date = new Date(year, month - 1, day);
-  const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
-  const weekday = weekdays[date.getDay()];
-  return `${year}年${month}月${day}日（${weekday}）`;
 }
 
 export function EntryDetail({ entry, onEdit, onDelete }: EntryDetailProps) {
@@ -27,7 +20,14 @@ export function EntryDetail({ entry, onEdit, onDelete }: EntryDetailProps) {
           <Button variant="secondary" onClick={onEdit}>
             編集
           </Button>
-          <Button variant="danger" onClick={onDelete}>
+          <Button
+            variant="danger"
+            onClick={() => {
+              if (window.confirm("この日記を削除してもよろしいですか？")) {
+                onDelete();
+              }
+            }}
+          >
             削除
           </Button>
         </div>

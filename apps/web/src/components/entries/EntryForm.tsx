@@ -100,7 +100,7 @@ export function EntryForm({ mode, initialData, onSubmit, onCancel }: EntryFormPr
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">評価</label>
-        <RatingStars value={rating} onChange={setRating} />
+        <RatingStars value={rating} onChange={isSubmitting ? undefined : setRating} />
         {errors.rating && <p className="mt-1 text-sm text-red-600">{errors.rating}</p>}
       </div>
 

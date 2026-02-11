@@ -17,13 +17,23 @@ export default function CalendarPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    let isActive = true;
     setIsLoading(true);
     setError("");
     api
       .getCalendar(year, month)
-      .then((res) => setEntries(res.entries))
-      .catch(() => setError("カレンダーの取得に失敗しました"))
-      .finally(() => setIsLoading(false));
+      .then((res) => {
+        if (isActive) setEntries(res.entries);
+      })
+      .catch(() => {
+        if (isActive) setError("カレンダーの取得に失敗しました");
+      })
+      .finally(() => {
+        if (isActive) setIsLoading(false);
+      });
+    return () => {
+      isActive = false;
+    };
   }, [year, month]);
 
   // 日記あり → その日の一覧、日記なし → 新規作成（日付プリセット）

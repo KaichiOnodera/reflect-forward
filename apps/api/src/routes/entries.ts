@@ -5,6 +5,7 @@ import {
   createEntrySchema,
   updateEntrySchema,
   calendarQuerySchema,
+  entryIdParamSchema,
 } from "@reflect-forward/shared";
 import { entryService, EntryError } from "../services/entryService.js";
 import { authMiddleware } from "../middleware/auth.js";
@@ -38,9 +39,9 @@ entries.get("/calendar", zValidator("query", calendarQuerySchema), async (c) => 
   return c.json(result);
 });
 
-entries.get("/:id", async (c) => {
+entries.get("/:id", zValidator("param", entryIdParamSchema), async (c) => {
   const { userId } = c.get("user");
-  const entryId = c.req.param("id");
+  const { id: entryId } = c.req.valid("param");
 
   try {
     const entry = await entryService.getById(userId, entryId);
@@ -53,25 +54,30 @@ entries.get("/:id", async (c) => {
   }
 });
 
-entries.put("/:id", zValidator("json", updateEntrySchema), async (c) => {
-  const { userId } = c.get("user");
-  const entryId = c.req.param("id");
-  const input = c.req.valid("json");
+entries.put(
+  "/:id",
+  zValidator("param", entryIdParamSchema),
+  zValidator("json", updateEntrySchema),
+  async (c) => {
+    const { userId } = c.get("user");
+    const { id: entryId } = c.req.valid("param");
+    const input = c.req.valid("json");
 
-  try {
-    const entry = await entryService.update(userId, entryId, input);
-    return c.json({ entry });
-  } catch (error) {
-    if (error instanceof EntryError && error.code === "NOT_FOUND") {
-      return c.json({ error: error.message }, 404);
+    try {
+      const entry = await entryService.update(userId, entryId, input);
+      return c.json({ entry });
+    } catch (error) {
+      if (error instanceof EntryError && error.code === "NOT_FOUND") {
+        return c.json({ error: error.message }, 404);
+      }
+      throw error;
     }
-    throw error;
   }
-});
+);
 
-entries.delete("/:id", async (c) => {
+entries.delete("/:id", zValidator("param", entryIdParamSchema), async (c) => {
   const { userId } = c.get("user");
-  const entryId = c.req.param("id");
+  const { id: entryId } = c.req.valid("param");
 
   try {
     await entryService.delete(userId, entryId);

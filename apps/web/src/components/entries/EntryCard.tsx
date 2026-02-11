@@ -3,18 +3,11 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { type EntryResponse } from "@/lib/api";
+import { formatDateWithDay } from "@/lib/date";
 import { RatingStars } from "./RatingStars";
 
 interface EntryCardProps {
   entry: EntryResponse;
-}
-
-function formatDateWithDay(dateStr: string): string {
-  const [year, month, day] = dateStr.split("-").map(Number);
-  const date = new Date(year, month - 1, day);
-  const weekdays = ["日", "月", "火", "水", "木", "金", "土"];
-  const weekday = weekdays[date.getDay()];
-  return `${year}年${month}月${day}日（${weekday}）`;
 }
 
 export function EntryCard({ entry }: EntryCardProps) {

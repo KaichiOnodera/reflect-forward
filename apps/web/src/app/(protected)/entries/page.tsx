@@ -20,6 +20,10 @@ export default function EntriesPage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
+    setPage(1);
+  }, [fromParam, toParam]);
+
+  useEffect(() => {
     setIsLoading(true);
     setError("");
     api

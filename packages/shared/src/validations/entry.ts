@@ -52,6 +52,11 @@ export const calendarQuerySchema = z.object({
   month: z.coerce.number().int().min(1).max(12),
 });
 
+export const entryIdParamSchema = z.object({
+  id: z.string().uuid("無効なIDです"),
+});
+
+export type EntryIdParam = z.infer<typeof entryIdParamSchema>;
 export type CreateEntryInput = z.infer<typeof createEntrySchema>;
 export type UpdateEntryInput = z.infer<typeof updateEntrySchema>;
 export type ListEntriesQuery = z.infer<typeof listEntriesQuerySchema>;
