@@ -1,3 +1,4 @@
+import type { Prisma } from "@prisma/client";
 import { prisma } from "../lib/prisma.js";
 
 interface FindOptions {
@@ -12,10 +13,10 @@ function buildWhereClause(
   userId: string,
   options: { from?: string; to?: string; rating?: number }
 ) {
-  const where: Record<string, unknown> = { userId };
+  const where: Prisma.DiaryEntryWhereInput = { userId };
 
   if (options.from || options.to) {
-    const entryDate: Record<string, Date> = {};
+    const entryDate: Prisma.DateTimeFilter = {};
     if (options.from) entryDate.gte = new Date(options.from);
     if (options.to) entryDate.lte = new Date(options.to);
     where.entryDate = entryDate;
@@ -78,7 +79,7 @@ export const entryRepository = {
       entryDate?: string;
     }
   ) {
-    const updateData: Record<string, unknown> = {};
+    const updateData: Prisma.DiaryEntryUpdateInput = {};
     if (data.content !== undefined) updateData.content = data.content;
     if (data.shortMemo !== undefined) updateData.shortMemo = data.shortMemo;
     if (data.rating !== undefined) updateData.rating = data.rating;
