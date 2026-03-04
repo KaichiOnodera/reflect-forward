@@ -5,6 +5,7 @@ import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import authRoutes from "./routes/auth.js";
 import entriesRoutes from "./routes/entries.js";
+import templatesRoutes from "./routes/templates.js";
 
 const app = new Hono();
 
@@ -36,6 +37,7 @@ app.onError((err: Error, c: Context) => {
 // Routes
 app.route("/api/auth", authRoutes);
 app.route("/api/entries", entriesRoutes);
+app.route("/api/templates", templatesRoutes);
 
 const port = Number(process.env.PORT) || 3001;
 

@@ -18,6 +18,7 @@ model User {
 
   entries       DiaryEntry[]
   refreshTokens RefreshToken[]
+  templates     DiaryTemplate[]
 
   @@map("users")
 }
@@ -49,4 +50,19 @@ model DiaryEntry {
 
   @@index([userId, entryDate])
   @@map("diary_entries")
+}
+
+model DiaryTemplate {
+  id        String   @id @default(uuid())
+  userId    String   @map("user_id")
+  name      String   @db.VarChar(50)
+  content   String   @db.Text
+  isDefault Boolean  @default(false) @map("is_default")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("diary_templates")
 }
