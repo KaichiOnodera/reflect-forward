@@ -200,9 +200,9 @@ describe("templateService", () => {
     it("他ユーザーのテンプレートで TemplateError を投げる", async () => {
       vi.mocked(templateRepository.findById).mockResolvedValue(mockTemplate);
 
-      await expect(
-        templateService.setDefault("other-user", "template-1")
-      ).rejects.toMatchObject({ code: "NOT_FOUND" });
+      await expect(templateService.setDefault("other-user", "template-1")).rejects.toMatchObject({
+        code: "NOT_FOUND",
+      });
     });
   });
 });
