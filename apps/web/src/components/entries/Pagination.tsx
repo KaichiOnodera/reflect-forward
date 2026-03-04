@@ -27,6 +27,7 @@ export function Pagination({ page, totalPages, onPageChange }: PaginationProps) 
   return (
     <div className="flex items-center justify-center gap-2">
       <Button
+        type="button"
         variant="secondary"
         onClick={() => onPageChange(page - 1)}
         disabled={page <= 1}
@@ -38,6 +39,7 @@ export function Pagination({ page, totalPages, onPageChange }: PaginationProps) 
       {getPageNumbers().map((p) => (
         <button
           key={p}
+          type="button"
           onClick={() => onPageChange(p)}
           className={`h-9 w-9 rounded-md text-sm font-medium transition-colors ${
             p === page ? "bg-blue-600 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
@@ -50,6 +52,7 @@ export function Pagination({ page, totalPages, onPageChange }: PaginationProps) 
       ))}
 
       <Button
+        type="button"
         variant="secondary"
         onClick={() => onPageChange(page + 1)}
         disabled={page >= totalPages}

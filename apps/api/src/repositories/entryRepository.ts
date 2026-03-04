@@ -21,7 +21,7 @@ function buildWhereClause(
     where.entryDate = entryDate;
   }
 
-  if (options.rating) {
+  if (options.rating !== undefined) {
     where.rating = options.rating;
   }
 
