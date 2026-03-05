@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { api } from "@/lib/api";
 import { Card } from "@/components/ui/Card";
@@ -9,6 +10,15 @@ export default function NewEntryPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const dateParam = searchParams.get("date");
+  const [defaultContent, setDefaultContent] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    // デフォルトテンプレートを取得（未設定の場合は無視）
+    api
+      .getDefaultTemplate()
+      .then((res) => setDefaultContent(res.template.content))
+      .catch(() => undefined);
+  }, []);
 
   // date クエリパラメータで日付をプリセット
   const initialData = dateParam
@@ -40,6 +50,7 @@ export default function NewEntryPage() {
         <EntryForm
           mode="create"
           initialData={initialData}
+          defaultContent={defaultContent}
           onSubmit={handleSubmit}
           onCancel={() => router.push("/entries")}
         />
