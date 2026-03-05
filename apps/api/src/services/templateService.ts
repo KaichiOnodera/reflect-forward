@@ -1,3 +1,4 @@
+import type { CreateTemplateInput, UpdateTemplateInput } from "@reflect-forward/shared";
 import { templateRepository } from "../repositories/templateRepository.js";
 
 export class TemplateError extends Error {
@@ -52,12 +53,12 @@ export const templateService = {
     return formatTemplate(template);
   },
 
-  async create(userId: string, input: { name: string; content: string }) {
+  async create(userId: string, input: CreateTemplateInput) {
     const template = await templateRepository.create({ userId, ...input });
     return formatTemplate(template);
   },
 
-  async update(userId: string, templateId: string, input: { name?: string; content?: string }) {
+  async update(userId: string, templateId: string, input: UpdateTemplateInput) {
     const existing = await templateRepository.findById(templateId);
     if (!existing || existing.userId !== userId) {
       throw new TemplateError("テンプレートが見つかりません", "NOT_FOUND");

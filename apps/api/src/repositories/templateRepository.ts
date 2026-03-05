@@ -52,7 +52,7 @@ export const templateRepository = {
         data: { isDefault: false },
       }),
       prisma.diaryTemplate.update({
-        where: { id: templateId },
+        where: { id: templateId, userId },
         data: { isDefault: true },
       }),
     ]);

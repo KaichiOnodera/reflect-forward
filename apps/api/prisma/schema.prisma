@@ -64,5 +64,6 @@ model DiaryTemplate {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
+  @@index([userId, isDefault])
   @@map("diary_templates")
 }

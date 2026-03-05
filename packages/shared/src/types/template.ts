@@ -4,6 +4,6 @@ export interface DiaryTemplate {
   name: string;
   content: string;
   isDefault: boolean;
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt: string;
+  updatedAt: string;
 }
