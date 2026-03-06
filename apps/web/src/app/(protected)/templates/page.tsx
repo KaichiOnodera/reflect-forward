@@ -11,6 +11,7 @@ export default function TemplatesPage() {
   const [templates, setTemplates] = useState<TemplateResponse[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [actionError, setActionError] = useState("");
 
   const fetchTemplates = () => {
     setIsLoading(true);
@@ -27,14 +28,24 @@ export default function TemplatesPage() {
   }, []);
 
   const handleSetDefault = async (id: string) => {
-    await api.setDefaultTemplate(id);
-    fetchTemplates();
+    setActionError("");
+    try {
+      await api.setDefaultTemplate(id);
+      fetchTemplates();
+    } catch {
+      setActionError("デフォルト設定に失敗しました");
+    }
   };
 
   const handleDelete = async (id: string) => {
     if (!confirm("このテンプレートを削除しますか？")) return;
-    await api.deleteTemplate(id);
-    fetchTemplates();
+    setActionError("");
+    try {
+      await api.deleteTemplate(id);
+      fetchTemplates();
+    } catch {
+      setActionError("削除に失敗しました");
+    }
   };
 
   return (
@@ -53,6 +64,9 @@ export default function TemplatesPage() {
       )}
 
       {error && <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">{error}</div>}
+      {actionError && (
+        <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">{actionError}</div>
+      )}
 
       {!isLoading && !error && (
         <>

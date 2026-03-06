@@ -37,6 +37,10 @@ export function TemplateForm({ mode, initialData, onSubmit, onCancel }: Template
         if (key && !fieldErrors[String(key)]) {
           fieldErrors[String(key)] = issue.message;
         }
+        // refinement エラー（path が空）はフォームレベルのエラーとして表示
+        if (issue.path.length === 0 && !fieldErrors._form) {
+          fieldErrors._form = issue.message;
+        }
       }
       setErrors(fieldErrors);
       return;
@@ -59,6 +63,9 @@ export function TemplateForm({ mode, initialData, onSubmit, onCancel }: Template
   return (
     <form onSubmit={handleSubmit} className="space-y-6" noValidate>
       {apiError && <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">{apiError}</div>}
+      {errors._form && (
+        <div className="rounded-md bg-red-50 p-4 text-sm text-red-700">{errors._form}</div>
+      )}
 
       <Input
         label="テンプレート名"

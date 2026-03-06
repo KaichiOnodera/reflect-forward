@@ -10,13 +10,18 @@ import { TemplateForm } from "@/components/templates/TemplateForm";
 export default function EditTemplatePage() {
   const params = useParams();
   const router = useRouter();
-  const id = params.id as string;
+  const id = Array.isArray(params.id) ? params.id[0] : params.id;
 
   const [template, setTemplate] = useState<TemplateResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
+    if (!id) {
+      setError("無効なテンプレートIDです");
+      setIsLoading(false);
+      return;
+    }
     setIsLoading(true);
     setError("");
     api
@@ -27,6 +32,7 @@ export default function EditTemplatePage() {
   }, [id]);
 
   const handleSubmit = async (data: { name: string; content: string }) => {
+    if (!id) return;
     await api.updateTemplate(id, data);
     router.push("/templates");
   };

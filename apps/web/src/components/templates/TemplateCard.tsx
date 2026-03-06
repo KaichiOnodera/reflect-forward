@@ -29,10 +29,11 @@ export function TemplateCard({ template, onSetDefault, onDelete }: TemplateCardP
           </p>
         </div>
         <div className="shrink-0 flex flex-col gap-2">
-          <Link href={`/templates/${template.id}/edit`}>
-            <Button variant="secondary" className="w-full text-sm">
-              編集
-            </Button>
+          <Link
+            href={`/templates/${template.id}/edit`}
+            className="inline-flex w-full items-center justify-center rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-800 transition-colors hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
+          >
+            編集
           </Link>
           {!template.isDefault && (
             <Button
