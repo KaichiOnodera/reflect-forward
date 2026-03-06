@@ -12,7 +12,12 @@ interface TemplateCardProps {
   onDelete: (id: string) => Promise<void>;
 }
 
-export function TemplateCard({ template, isPending = false, onSetDefault, onDelete }: TemplateCardProps) {
+export function TemplateCard({
+  template,
+  isPending = false,
+  onSetDefault,
+  onDelete,
+}: TemplateCardProps) {
   return (
     <Card className="p-4">
       <div className="flex items-start justify-between gap-4">
