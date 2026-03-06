@@ -145,6 +145,16 @@ export interface CalendarResponse {
   entries: CalendarEntry[];
 }
 
+export interface TemplateResponse {
+  id: string;
+  userId: string;
+  name: string;
+  content: string;
+  isDefault: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
 // API メソッド
 export const api = {
   register(data: { email: string; password: string; displayName?: string }) {
@@ -238,5 +248,43 @@ export const api = {
 
   getCalendar(year: number, month: number) {
     return apiFetch<CalendarResponse>(`/api/entries/calendar?year=${year}&month=${month}`);
+  },
+
+  getTemplates() {
+    return apiFetch<{ templates: TemplateResponse[] }>("/api/templates");
+  },
+
+  getTemplate(id: string) {
+    return apiFetch<{ template: TemplateResponse }>(`/api/templates/${id}`);
+  },
+
+  getDefaultTemplate() {
+    return apiFetch<{ template: TemplateResponse }>("/api/templates/default");
+  },
+
+  createTemplate(data: { name: string; content: string }) {
+    return apiFetch<{ template: TemplateResponse }>("/api/templates", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  },
+
+  updateTemplate(id: string, data: { name?: string; content?: string }) {
+    return apiFetch<{ template: TemplateResponse }>(`/api/templates/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    });
+  },
+
+  deleteTemplate(id: string) {
+    return apiFetch<{ message: string }>(`/api/templates/${id}`, {
+      method: "DELETE",
+    });
+  },
+
+  setDefaultTemplate(id: string) {
+    return apiFetch<{ template: TemplateResponse }>(`/api/templates/${id}/default`, {
+      method: "PUT",
+    });
   },
 };

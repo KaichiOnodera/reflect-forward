@@ -10,6 +10,7 @@ import { RatingStars } from "./RatingStars";
 interface EntryFormProps {
   mode: "create" | "edit";
   initialData?: EntryResponse;
+  defaultContent?: string;
   onSubmit: (data: {
     content?: string | null;
     shortMemo?: string | null;
@@ -29,11 +30,17 @@ function getTodayString(): string {
   return `${year}-${month}-${day}`;
 }
 
-export function EntryForm({ mode, initialData, onSubmit, onCancel }: EntryFormProps) {
+export function EntryForm({
+  mode,
+  initialData,
+  defaultContent,
+  onSubmit,
+  onCancel,
+}: EntryFormProps) {
   const [entryDate, setEntryDate] = useState(initialData?.entryDate ?? getTodayString());
   const [rating, setRating] = useState<number | null>(initialData?.rating ?? null);
   const [shortMemo, setShortMemo] = useState(initialData?.shortMemo ?? "");
-  const [content, setContent] = useState(initialData?.content ?? "");
+  const [content, setContent] = useState(initialData?.content ?? defaultContent ?? "");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [apiError, setApiError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
