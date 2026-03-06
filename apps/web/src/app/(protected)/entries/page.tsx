@@ -36,7 +36,7 @@ export default function EntriesPage() {
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold text-gray-900">日記一覧</h2>
+        <h2 className="text-xl md:text-2xl font-bold text-gray-900">日記一覧</h2>
         <Link href="/entries/new">
           <Button>新規作成</Button>
         </Link>
