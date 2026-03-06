@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { api, type TemplateResponse } from "@/lib/api";
+import { ApiError, api, type TemplateResponse } from "@/lib/api";
 import { Card } from "@/components/ui/Card";
 import { Spinner } from "@/components/ui/Spinner";
 import { TemplateForm } from "@/components/templates/TemplateForm";
@@ -27,7 +27,13 @@ export default function EditTemplatePage() {
     api
       .getTemplate(id)
       .then((res) => setTemplate(res.template))
-      .catch(() => setError("テンプレートが見つかりません"))
+      .catch((e) => {
+        if (e instanceof ApiError && e.status === 404) {
+          setError("テンプレートが見つかりません");
+        } else {
+          setError(e instanceof ApiError ? e.message : "テンプレートの取得に失敗しました");
+        }
+      })
       .finally(() => setIsLoading(false));
   }, [id]);
 

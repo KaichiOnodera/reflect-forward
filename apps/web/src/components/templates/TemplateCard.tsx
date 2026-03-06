@@ -7,11 +7,12 @@ import { type TemplateResponse } from "@/lib/api";
 
 interface TemplateCardProps {
   template: TemplateResponse;
+  isPending?: boolean;
   onSetDefault: (id: string) => Promise<void>;
   onDelete: (id: string) => Promise<void>;
 }
 
-export function TemplateCard({ template, onSetDefault, onDelete }: TemplateCardProps) {
+export function TemplateCard({ template, isPending = false, onSetDefault, onDelete }: TemplateCardProps) {
   return (
     <Card className="p-4">
       <div className="flex items-start justify-between gap-4">
@@ -31,6 +32,7 @@ export function TemplateCard({ template, onSetDefault, onDelete }: TemplateCardP
         <div className="shrink-0 flex flex-col gap-2">
           <Link
             href={`/templates/${template.id}/edit`}
+            aria-label={`テンプレート「${template.name}」を編集`}
             className="inline-flex w-full items-center justify-center rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-800 transition-colors hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
           >
             編集
@@ -39,7 +41,9 @@ export function TemplateCard({ template, onSetDefault, onDelete }: TemplateCardP
             <Button
               variant="secondary"
               className="text-sm"
+              aria-label={`テンプレート「${template.name}」をデフォルトに設定`}
               onClick={() => onSetDefault(template.id)}
+              disabled={isPending}
             >
               デフォルトに設定
             </Button>
@@ -47,7 +51,9 @@ export function TemplateCard({ template, onSetDefault, onDelete }: TemplateCardP
           <Button
             variant="secondary"
             className="text-sm text-red-600 hover:text-red-700"
+            aria-label={`テンプレート「${template.name}」を削除`}
             onClick={() => onDelete(template.id)}
+            disabled={isPending}
           >
             削除
           </Button>
