@@ -103,7 +103,7 @@ export function Calendar({ year, month, entries, onDateClick, onMonthChange }: C
       <div className="grid grid-cols-7 gap-1">
         {cells.map((day, i) => {
           if (day === null) {
-            return <div key={`empty-${i}`} className="h-14" />;
+            return <div key={`empty-${i}`} className="h-10 sm:h-14" />;
           }
 
           const dateStr = formatDate(day);
@@ -115,7 +115,7 @@ export function Calendar({ year, month, entries, onDateClick, onMonthChange }: C
               key={dateStr}
               type="button"
               onClick={() => onDateClick(dateStr)}
-              className={`h-14 rounded-md flex flex-col items-center justify-center text-sm transition-colors hover:bg-gray-100 ${
+              className={`h-10 sm:h-14 rounded-md flex flex-col items-center justify-center text-sm transition-colors hover:bg-gray-100 ${
                 dayOfWeek === 0
                   ? "text-red-500"
                   : dayOfWeek === 6

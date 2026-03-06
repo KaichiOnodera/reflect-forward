@@ -11,12 +11,12 @@ interface PaginationProps {
 export function Pagination({ page, totalPages, onPageChange }: PaginationProps) {
   if (totalPages <= 1) return null;
 
-  // ページ番号のリストを生成（最大5つ表示）
+  // ページ番号のリストを生成（最大3つ表示）
   const getPageNumbers = (): number[] => {
     const pages: number[] = [];
-    let start = Math.max(1, page - 2);
-    const end = Math.min(totalPages, start + 4);
-    start = Math.max(1, end - 4);
+    let start = Math.max(1, page - 1);
+    const end = Math.min(totalPages, start + 2);
+    start = Math.max(1, end - 2);
 
     for (let i = start; i <= end; i++) {
       pages.push(i);

@@ -145,7 +145,7 @@ export function EntryForm({
           value={content}
           onChange={(e) => setContent(e.target.value)}
           disabled={isSubmitting}
-          rows={8}
+          rows={5}
           className={`block w-full rounded-md border px-3 py-2 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:bg-gray-50 disabled:text-gray-500 ${
             errors.content ? "border-red-500" : "border-gray-300"
           }`}

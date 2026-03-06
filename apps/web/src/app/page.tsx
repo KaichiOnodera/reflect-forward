@@ -29,11 +29,11 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold mb-4">Reflect Forward</h1>
+    <main className="flex min-h-screen flex-col items-center justify-center p-6 md:p-24">
+      <h1 className="text-2xl md:text-4xl font-bold mb-4">Reflect Forward</h1>
       <p className="text-xl text-gray-600 mb-8">振り返って前進する</p>
       <p className="text-gray-500 mb-12">日記とAIで自己理解を深めるサービス</p>
-      <div className="flex gap-4">
+      <div className="flex flex-col sm:flex-row gap-4">
         <Link
           href="/login"
           className="rounded-md bg-blue-600 px-6 py-3 text-white font-medium hover:bg-blue-700 transition-colors"
