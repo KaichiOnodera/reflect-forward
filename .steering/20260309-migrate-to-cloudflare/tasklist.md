@@ -2,11 +2,11 @@
 
 ## PR 戦略
 
-| PR | ブランチ名 | 内容 |
-|----|----------|------|
+| PR   | ブランチ名            | 内容                                                    |
+| ---- | --------------------- | ------------------------------------------------------- |
 | PR 1 | `feat/cloudflare-api` | バックエンド CF Workers 対応 + ステアリングドキュメント |
-| PR 2 | `feat/cloudflare-web` | フロントエンド CF Pages 対応 |
-| PR 3 | `docs/adr-cloudflare` | ADR 更新（ドキュメントのみ） |
+| PR 2 | `feat/cloudflare-web` | フロントエンド CF Pages 対応                            |
+| PR 3 | `docs/adr-cloudflare` | ADR 更新（ドキュメントのみ）                            |
 
 フェーズ C（インフラ）・D（デプロイ）・E（E2E 確認）は手動作業のため PR 不要。
 
@@ -23,11 +23,11 @@
 - [x] A-5: `@prisma/extension-accelerate` を dependencies に追加する
 - [x] A-6: `wrangler` を devDependencies に追加する
 - [x] A-7: `apps/api/src/lib/prisma.ts` に `withAccelerate()` 拡張を追加する
-- [ ] A-8: `apps/api/prisma/schema.prisma` の `datasource` に `directUrl = env("DIRECT_DATABASE_URL")` を追加する
-- [ ] A-9: `apps/api/package.json` に `deploy`・`dev:worker` スクリプトを追加する
-- [ ] A-10: ローカルの `.env` に `DIRECT_DATABASE_URL` を追加する（`DATABASE_URL` と同じ値で可）
-- [ ] A-11: ローカルで `pnpm dev` が正常に起動することを確認する
-- [ ] A-12: ローカルで `pnpm typecheck` がエラーなく通ることを確認する
+- [x] A-8: `apps/api/prisma/schema.prisma` の `datasource` に `directUrl = env("DIRECT_DATABASE_URL")` を追加する
+- [x] A-9: `apps/api/package.json` に `deploy`・`dev:worker` スクリプトを追加する
+- [x] A-10: ローカルの `.env` に `DIRECT_DATABASE_URL` を追加する（`DATABASE_URL` と同じ値で可）
+- [x] A-11: ローカルで `pnpm dev` が正常に起動することを確認する
+- [x] A-12: ローカルで `pnpm typecheck` がエラーなく通ることを確認する
 - [ ] A-13: ステアリングドキュメント（`.steering/20260309-migrate-to-cloudflare/`）を含めて PR を作成し、CI が通ることを確認して `main` にマージする
 
 ---
@@ -58,7 +58,7 @@
 ## フェーズ D: デプロイ（手動作業）
 
 - [ ] D-1: `apps/api` で `wrangler secret put` を使い、全シークレットを設定する（`DATABASE_URL`・`DIRECT_DATABASE_URL`・`JWT_SECRET`・`JWT_EXPIRES_IN`・`REFRESH_TOKEN_EXPIRES_IN`）
-  ※ C-3・C-5 で取得した接続文字列を使用
+      ※ C-3・C-5 で取得した接続文字列を使用
 - [ ] D-2: Supabase にマイグレーションを適用する（`DIRECT_DATABASE_URL=<supabase_url> DATABASE_URL=<accelerate_url> pnpm prisma migrate deploy`）
 - [ ] D-3: `wrangler deploy`（`apps/api`）で CF Workers にデプロイし、Workers URL を確定する
 - [ ] D-4: CF Pages プロジェクトを Cloudflare ダッシュボードで作成し、`NEXT_PUBLIC_API_URL` に Workers URL を設定する
