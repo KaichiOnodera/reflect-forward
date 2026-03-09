@@ -98,7 +98,8 @@ export const entryRepository = {
   },
 
   async getCalendarData(userId: string, year: number, month: number) {
-    return prisma.diaryEntry.groupBy({
+    // withAccelerate() 拡張により groupBy() の型推論が {} になるため明示的にキャスト
+    const result = await prisma.diaryEntry.groupBy({
       by: ["entryDate"],
       where: {
         userId,
@@ -110,5 +111,10 @@ export const entryRepository = {
       _count: { id: true },
       _avg: { rating: true },
     });
+    return result as unknown as Array<{
+      entryDate: Date;
+      _count: { id: number };
+      _avg: { rating: number | null };
+    }>;
   },
 };
