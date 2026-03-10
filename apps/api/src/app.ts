@@ -10,13 +10,13 @@ const app = new Hono();
 
 // Middleware
 app.use("*", logger());
-app.use(
-  "*",
-  cors({
+// CF Workers ではモジュールロード時にシークレットが未注入のため、リクエスト時に読む
+app.use("*", (c, next) => {
+  return cors({
     origin: process.env.CORS_ORIGIN || "http://localhost:3000",
     credentials: true,
-  })
-);
+  })(c, next);
+});
 
 // Health check
 app.get("/", (c) => {
