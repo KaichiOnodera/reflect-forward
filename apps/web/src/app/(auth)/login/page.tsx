@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { LoginForm } from "@/components/auth/LoginForm";
 
+export const runtime = "edge";
+
 export const metadata: Metadata = {
   title: "ログイン - Reflect Forward",
 };

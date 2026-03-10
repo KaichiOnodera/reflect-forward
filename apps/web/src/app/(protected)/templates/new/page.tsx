@@ -1,5 +1,7 @@
 "use client";
 
+export const runtime = "edge";
+
 import { useRouter } from "next/navigation";
 import { api } from "@/lib/api";
 import { Card } from "@/components/ui/Card";
