@@ -10,13 +10,17 @@ const app = new Hono();
 
 // Middleware
 app.use("*", logger());
-app.use(
-  "*",
-  cors({
-    origin: process.env.CORS_ORIGIN || "http://localhost:3000",
+// CF Workers ではモジュールロード時にシークレットが未注入のため、リクエスト時に読む
+app.use("*", (c, next) => {
+  const origin = process.env.CORS_ORIGIN;
+  if (!origin && process.env.NODE_ENV === "production") {
+    console.warn("CORS_ORIGIN is not set in production environment");
+  }
+  return cors({
+    origin: origin || "http://localhost:3000",
     credentials: true,
-  })
-);
+  })(c, next);
+});
 
 // Health check
 app.get("/", (c) => {

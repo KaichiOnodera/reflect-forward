@@ -9,6 +9,8 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "deploy": "wrangler deploy",
+    "migrate:deploy": "prisma generate && prisma migrate deploy",
+    "deploy:with-migrate": "pnpm migrate:deploy && pnpm deploy",
     "lint": "eslint src/",
     "typecheck": "tsc --noEmit",
     "test": "vitest"

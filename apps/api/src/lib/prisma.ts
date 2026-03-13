@@ -1,16 +1,21 @@
 import { PrismaClient } from "@prisma/client";
 import { withAccelerate } from "@prisma/extension-accelerate";
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: ReturnType<typeof createPrismaClient> | undefined;
-};
+type ExtendedClient = ReturnType<typeof createPrismaClient>;
 
 function createPrismaClient() {
   return new PrismaClient().$extends(withAccelerate());
 }
 
-export const prisma = globalForPrisma.prisma ?? createPrismaClient();
+let _client: ExtendedClient | undefined;
 
-if (process.env.NODE_ENV !== "production") {
-  globalForPrisma.prisma = prisma;
-}
+// CF Workers ではモジュールロード時に process.env（シークレット）が利用できないため、
+// 初回アクセス時にクライアントを生成する Proxy を使用して遅延初期化する
+export const prisma = new Proxy({} as ExtendedClient, {
+  get(_, prop: string | symbol) {
+    if (!_client) {
+      _client = createPrismaClient();
+    }
+    return Reflect.get(_client, prop);
+  },
+});
