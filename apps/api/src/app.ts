@@ -12,8 +12,8 @@ const app = new Hono();
 app.use("*", logger());
 // CF Workers ではモジュールロード時にシークレットが未注入のため、リクエスト時に読む
 app.use("*", (c, next) => {
-  const origin = process.env.CORS_ORIGIN;
-  if (!origin && process.env.NODE_ENV === "production") {
+  const origin = c.env.CORS_ORIGIN;
+  if (!origin && c.env.NODE_ENV === "production") {
     console.warn("CORS_ORIGIN is not set in production environment");
   }
   return cors({
