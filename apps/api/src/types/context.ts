@@ -10,3 +10,8 @@ export type Variables = {
 };
 
 export type AuthContext = Context<{ Variables: Variables }>;
+
+export type Bindings = {
+  CORS_ORIGIN?: string;
+  NODE_ENV?: string;
+};

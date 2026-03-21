@@ -2,11 +2,12 @@ import { Hono } from "hono";
 import type { Context } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
+import type {Bindings} from "types/context.js"
 import authRoutes from "./routes/auth.js";
 import entriesRoutes from "./routes/entries.js";
 import templatesRoutes from "./routes/templates.js";
 
-const app = new Hono();
+const app = new Hono<Bindings>();
 
 // Middleware
 app.use("*", logger());
