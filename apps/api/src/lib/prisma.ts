@@ -23,7 +23,8 @@ export function initPrismaUrl(url: string) {
 export const prisma = new Proxy({} as ExtendedClient, {
   get(_, prop: string | symbol) {
     if (!_client) {
-      if (!_url) throw new Error("DATABASE_URL が未設定です。initPrismaUrl() を先に呼んでください。");
+      if (!_url)
+        throw new Error("DATABASE_URL が未設定です。initPrismaUrl() を先に呼んでください。");
       _client = createPrismaClient(_url);
     }
     return Reflect.get(_client, prop);
