@@ -12,6 +12,7 @@ export type Variables = {
 export type AuthContext = Context<{ Variables: Variables }>;
 
 export type Bindings = {
+  DATABASE_URL: string;
   CORS_ORIGIN?: string;
   NODE_ENV?: string;
 };

@@ -3,6 +3,7 @@ import type { Context } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import type { Bindings } from "./types/context.js";
+import { initPrismaUrl } from "./lib/prisma.js";
 import authRoutes from "./routes/auth.js";
 import entriesRoutes from "./routes/entries.js";
 import templatesRoutes from "./routes/templates.js";
@@ -11,7 +12,11 @@ const app = new Hono<{ Bindings: Bindings }>();
 
 // Middleware
 app.use("*", logger());
-// CF Workers ではモジュールロード時にシークレットが未注入のため、リクエスト時に読む
+// CF Workers ではリクエスト時の env から DATABASE_URL を Prisma に注入する
+app.use("*", (c, next) => {
+  initPrismaUrl(c.env.DATABASE_URL);
+  return next();
+});
 app.use("*", (c, next) => {
   const origin = c.env.CORS_ORIGIN;
   if (!origin && c.env.NODE_ENV === "production") {
