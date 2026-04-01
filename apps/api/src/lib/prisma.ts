@@ -3,18 +3,29 @@ import { withAccelerate } from "@prisma/extension-accelerate";
 
 type ExtendedClient = ReturnType<typeof createPrismaClient>;
 
-function createPrismaClient() {
-  return new PrismaClient().$extends(withAccelerate());
+function createPrismaClient(url: string) {
+  return new PrismaClient({
+    datasources: { db: { url } },
+  }).$extends(withAccelerate());
 }
 
+let _url: string | undefined;
 let _client: ExtendedClient | undefined;
 
-// CF Workers ではモジュールロード時に process.env（シークレット）が利用できないため、
-// 初回アクセス時にクライアントを生成する Proxy を使用して遅延初期化する
+// CF Workers では process.env が使えないため、リクエスト時に env.DATABASE_URL を注入する
+export function initPrismaUrl(url: string) {
+  if (_url !== url) {
+    _url = url;
+    _client = undefined;
+  }
+}
+
 export const prisma = new Proxy({} as ExtendedClient, {
   get(_, prop: string | symbol) {
     if (!_client) {
-      _client = createPrismaClient();
+      if (!_url)
+        throw new Error("DATABASE_URL が未設定です。initPrismaUrl() を先に呼んでください。");
+      _client = createPrismaClient(_url);
     }
     return Reflect.get(_client, prop);
   },
